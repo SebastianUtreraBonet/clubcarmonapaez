@@ -4,14 +4,12 @@
     setTimeout(window.location('plantilla.html').load(), 2000)
 </script>
 {% block content %}
-
     {% for post in posts %}
         <div class="col-lg-3" style="width: 280px;height: auto; margin: 20px; padding: 10px; background-color: white">
             <img src="{{ post.foto }}" style="width: 100%;">
             <h1><a href="">{{ post.titulo }}</a></h1>
             <p>{{ post.texto|linebreaksbr }}</p>
 
-            <p>published: {{ post.fecha_publicacion }}</p>
         </div>
     {% endfor %}
 {% endblock %}

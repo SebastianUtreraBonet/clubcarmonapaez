@@ -1,0 +1,28 @@
+{% extends 'Club\plantilla.html' %}
+{% load staticfiles %}
+<script>
+    setTimeout(window.location('plantilla.html').load(), 2000)
+</script>
+{% block content %}
+    <div style="margin-bottom: 50px;height: 50px;text-align: center">
+        {% for i in rango %}
+            <div class="col-lg-3"><h2>{{ i }}</h2></div>
+        {% endfor %}
+    </div>
+
+
+    <div style="margin-top: 250px;height: 500px;">
+        {% for carrera in carrera %}
+            {% if carrera.fecha.month >= hoy.month and carrera.fecha.day >= hoy.day %}
+                {% if carrera.fecha.month == 7 %}
+                    <div class="col-lg-12">
+                        <h3 style="color: rgba(71, 71, 71, 0.96)">{{ carrera.fecha.day }}/{{ carrera.fecha.month }}/{{ carrera.fecha.year }}
+                            - {{ carrera.titulo }}</h3>
+                    </div>
+                {% endif %}
+
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

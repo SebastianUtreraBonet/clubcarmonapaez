@@ -10,7 +10,7 @@
 </head>
 
 
-<body style="background-color: aliceblue; background-image:url('../static/img/bg.jpg'); background-size: cover;">
+<body style="background-color: aliceblue; background-image:url('../static/img/bg.jpg'); background-size:200%; background-repeat: no-repeat; background-position: center">
 <nav class="navbar" style="padding:1em 0; background-color:rgba(0, 29, 108, 0.86); border-bottom: 10px solid fuchsia">
     <div class="container">
 
@@ -35,10 +35,7 @@
             <ul class="nav navbar-nav">
 
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
-
-
                 {% if user.is_authenticated %}
                     <form class="navbar-form navbar-left " method="get" action="" role="search">
                         <div class="form-group">
@@ -60,18 +57,21 @@
                     <li><a href="">Registro</a></li>
                     <li><a href="">Login</a></li>
                 {% endif %}
-
             </ul>
         </div>
     </div>
 </nav>
-<div class="container" style="background-color:rgba(252, 255, 255, 0.46);border-radius: 8px">
+<div class="col-lg-2">
+    <a href={% url 'calendario' %} class="btn-info col-lg-6 col-lg-offset-3" style="font-size: x-large; text-align: center; border-radius: 4px" >Calendario</a>
+
+</div>
+<div class="col-lg-8" style="background-color:rgba(252, 255, 255, 0.46);border-radius: 8px">
     {% block content %}
     {% endblock %}
 
 </div>
 </body>
 <footer class="modal-footer"
-        style="height: 40px; text-align: right; background-color: #002557;color:#eee; width: 100%; position: fixed; bottom: 0px;">
+        style="height: 40px; text-align: right; background-color: #002557;color:#eee; width: 100%; position: fixed; bottom: 0px; border-top:5px solid fuchsia;">
     Pagína web realiza por Sebastián Utrera Bonet®.
 </footer>
