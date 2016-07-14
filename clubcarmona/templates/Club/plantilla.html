@@ -10,7 +10,7 @@
 </head>
 
 
-<body style="background-color:rgba(255, 255, 255, 0.31);background-image:url('../static/img/run.jpg');">
+<body style="background-image:url('../static/img/run.jpg'); background-position: 0px 1510px">
 <nav class="navbar" style="padding:1em 0; background-color:rgba(0, 29, 108, 0.86); border-bottom: 10px solid fuchsia">
     <div class="container">
 
@@ -61,15 +61,18 @@
         </div>
     </div>
 </nav>
-<div class="col-lg-2" style="text-aling:center;">
-    <a href="calendario" class="btn-info col-lg-8 col-lg-offset-2" style="font-size:1.2em; border-radius: 4px" >Calendario</a>
+<div style="background-image:url('../static/img/run.jpg');">
+    <div class=" col-lg-2" style="text-aling:center;">
+        <a href="calendario" class="btn-info col-lg-8 col-lg-offset-2" style="text-align: center;font-size:1.2em; border-radius: 4px">Calendario</a>
 
-</div>
-<div class="col-lg-8">
-    {% block content %}
-    {% endblock %}
+    </div>
+    <div class="col-lg-8">
+        {% block content %}
+        {% endblock %}
 
+    </div>
 </div>
+
 </body>
 <footer class="modal-footer"
         style="height: 40px; text-align: right; background-color: #002557; color:#eee; width: 100%; position: fixed; bottom: 0px; border-top:5px solid fuchsia;">

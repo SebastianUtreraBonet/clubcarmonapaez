@@ -15,5 +15,7 @@ def calendario(request):
 			'hoy'     : hoy,
 			'carreras':carreras,
 			'rango':rango,
-
 	})
+
+def ficha(request):
+	return render(request, 'Club/calendario.html')
