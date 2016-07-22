@@ -1,0 +1,22 @@
+{% extends "Club\plantilla.html" %}
+{% block content %}
+
+    <div style="text-align: center; padding: 12px;background-color: rgba(240, 240, 240, 0.66)";  class="col-lg-12">
+
+        <h2 STYLE="margin-bottom: 60PX;">ALBUMES DE FOTOS PICASA:</h2>
+
+        {% for a in album %}
+            <a href="{{ a.direccion }}">
+                <div class="col-lg-4">
+                    <div class="col-lg-10"
+                         style="background-color: rgba(255, 255, 255, 0.66); border-radius: 5px; margin-bottom: 10px; text-align: center; height: auto; font-size: 1.6em">
+                        {{ a.nombre }}
+                    </div>
+                </div>
+            </a>
+
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

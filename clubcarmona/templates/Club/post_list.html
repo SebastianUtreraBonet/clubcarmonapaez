@@ -1,19 +1,60 @@
-{% extends 'Club\plantilla.html' %}
+{% extends 'Club/plantilla.html' %}
 {% load staticfiles %}
 <script>
     setTimeout(window.location('plantilla.html').load(), 2000)
 </script>
 {% block content %}
-    {% for post in posts %}
-        <div class="col-lg-12" style="background-color:rgba(252, 255, 255, 0.66);border-radius: 8px; padding: 15px;">
-            {% if post.foto.name != 'nofoto.jpg' %}
-                <div class="col-lg-2"><img src="{{ post.foto }}" style="width: 180px;"></div>
-            {% endif %}
-            <div>
-                <h1><a href="ficha/{{ post.id }}">{{ post.titulo }}</a></h1>
-                <p>{{ post.texto|linebreaksbr }}</p>
-            </div>
 
+    {% for post in posts %}
+        <div class="col-lg-12"
+             style="background-color:rgba(252, 255, 255, 0.66);border-radius: 8px; padding: 10px; font-size: 1.1em; margin:10px; text-align: justify">
+            {% if post.foto.name != 'nofoto.jpg' %}
+                <div class="col-lg-2" style="text-align: center; margin-right: 30px;"><img src="{{ post.foto }}"
+                                                                                           style="max-width: 150px;">
+                </div>
+            {% endif %}
+            <div class="col-lg-10 col-lg-offset-1">
+
+                <h1><a href="ficha/{{ post.id }}">{{ post.titulo|title }}</a></h1>
+
+                <p>
+                    {% if post.texto|length > 350 %}
+                        {{ post.texto|slice:"350" }} ...
+                        <a href="ficha/{{ post.id }}" STYLE="color: indianred">" ver más "</a>
+                    {% else %}
+                        {{ post.texto }}
+                    {% endif %}
+                </p>
+                {% if post.fecha_publicacion != null %}
+                    <p style="text-align: right; font-size: 0.9em; color: rgba(119, 119, 119, 0.94)"> Publicado: {{ post.fecha_publicacion }}</p>
+                {% endif %}
+            </div>
         </div>
     {% endfor %}
+    <div style="margin-top: 200px">
+        <div class="page-header pager" style="margin-top: 80px">
+            <ul style="margin-top: 299px">
+                <li>
+                    {% if paginator.has_prev %}
+                        <a href="/?page={{ paginator.firstPage }}"> Inicio </a>
+                        <a href="/?page={{ paginator.prev_page }}"> Anterior </a>
+                    {% else %}
+                        <a style="color:gray; cursor:not-allowed;"> Inicio </a>
+                        <a style="color:gray; cursor:not-allowed; "> Anterior </a>
+                    {% endif %}
+                    {% if paginator.has_next %}
+                        <a href="/?page={{ paginator.next_page }}"> Siguiente </a>
+                        <a href="/?page={{ paginator.pages }}"> Ultima </a>
+                    {% else %}
+                        <a style="color:gray; cursor: no-drop;"> Siguiente </>
+                        <a style="color:gray; cursor: no-drop;"> Ultima </a>
+                    {% endif %}
+                </li>
+                <p>Página {{ paginator.page }} de {{ paginator.pages }} </p>
+            </ul>
+        </div>
+
+    </div>
+
+
 {% endblock %}

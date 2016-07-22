@@ -9,11 +9,11 @@
     <link href="{% static 'css/style.css' %}" media="screen" rel="stylesheet" type="text/css">
 </head>
 
+<body style="background: url('../static/img/run.jpg') no-repeat center center fixed;  background-size: cover;">
 
-<body style="background-image:url('../static/img/run.jpg'); background-position: 0px 1510px">
-<nav class="navbar" style="padding:1em 0; background-color:rgba(0, 29, 108, 0.86); border-bottom: 10px solid fuchsia">
+
+<nav class="navbar" style="padding:1em; background-color:rgba(0, 29, 108, 0.86); border-bottom: 5px solid fuchsia">
     <div class="container">
-
         <div class="navbar-left">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -25,22 +25,20 @@
 
             <a href="/">
                 <div class="navbar-brand" style="font-size:2.1vw; color: deepskyblue; margin: -0.2em 0 0 0 ;"
-                     href="/"><span class="glyphicon glyphicon-asterisk" style="font-size: 1.6vw"></span> Club Carmona
+                     href="/"><span class="glyphicon glyphicon-asterisk" style="font-size: 1.6vw"></span> Club
+                    Carmona
                     Paez
                 </div>
             </a>
         </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-
-            </ul>
+        <div class="collapse navbar-collapse, navbar" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <form class="navbar-form navbar-left " method="get" action="" role="search">
                         <div class="form-group">
                             {% csrf_token %}
-                            <input type="text" id="buscar" name="buscar" value="" class="form-group form-control">
+                            <input type="text" id="buscar" name="buscar" value=""
+                                   class="form-group form-control">
                         </div>
                         <button type="submit" class="btn btn-default" href="../buscar"><span
                                 class="glyphicon glyphicon-search"></span> Buscar
@@ -61,20 +59,40 @@
         </div>
     </div>
 </nav>
-<div style="background-image:url('../static/img/run.jpg');">
-    <div class=" col-lg-2" style="text-aling:center;">
-        <a href="calendario" class="btn-info col-lg-8 col-lg-offset-2" style="text-align: center;font-size:1.2em; border-radius: 4px">Calendario</a>
-
-    </div>
-    <div class="col-lg-8">
+<nav class="container-fluid"
+     style=" background-color:rgba(0, 29, 108, 0.86);margin-top:-20px; height: 40px; width: 100%; padding: 0.5em; align-content: center">
+    <ul class="col-lg-10 col-lg-offset-2">
+        <div class=" col-lg-2" style="text-aling:center; margin-left: -20px;">
+            <a href="/" class="btn-info col-lg-11"
+               style="text-align: center;font-size:1.2em; border-radius: 4px">Noticias</a>
+        </div>
+        <div class=" col-lg-2" style="text-aling:center;">
+            <a href="calendario" class="btn-info col-lg-11"
+               style="text-align: center;font-size:1.2em; border-radius: 4px">Calendario</a>
+        </div>
+        <div class=" col-lg-2" style="text-aling:center;">
+            <a href="calendario" class="btn-info col-lg-11"
+               style="text-align: center;font-size:1.2em; border-radius: 4px">Club Carmona Paez</a>
+        </div>
+        <div class=" col-lg-2" style="text-aling:center;">
+            <a href="galeria" class="btn-info col-lg-11"
+               style="text-align: center;font-size:1.2em; border-radius: 4px">Galeria Fotos</a>
+        </div>
+        <div class=" col-lg-2" style="text-aling:center;">
+            <a href="calendario" class="btn-info col-lg-11"
+               style="text-align: center;font-size:1.2em; border-radius: 4px">Resultados</a>
+        </div>
+    </ul>
+</nav>
+    <div class="col-lg-8 col-lg-offset-2" style="margin-top: 20px; margin-bottom: 80px;">
         {% block content %}
         {% endblock %}
 
     </div>
-</div>
-
 </body>
+
+
 <footer class="modal-footer"
-        style="height: 40px; text-align: right; background-color: #002557; color:#eee; width: 100%; position: fixed; bottom: 0px; border-top:5px solid fuchsia;">
+        style="height: 40px; text-align: right; background-color: #002557; color:#eee; width: 100%; position: fixed; bottom: 0px; border-top:3px solid fuchsia;">
     Pagína web realiza por Sebastián Utrera Bonet®.
 </footer>

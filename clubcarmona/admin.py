@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from .models import Post,Carrera
+from .models import Post,Carrera,Albumes
 
 # Register your models here.
 
 admin.site.register(Post)
 admin.site.register(Carrera)
+admin.site.register(Albumes)
 
