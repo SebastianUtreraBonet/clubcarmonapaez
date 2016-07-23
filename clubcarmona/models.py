@@ -1,13 +1,12 @@
 from django.utils import timezone
-
 from django.db import models
-
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 class Post(models.Model):
 	autor = models.ForeignKey('auth.User')
 	titulo = models.CharField(max_length=250)
-	texto = models.TextField(max_length=99999999)
+	texto = RichTextField(max_length=99999999)
 	fecha = models.DateTimeField(default=timezone.now)
 	fecha_publicacion = models.DateTimeField(blank=True, null=True)
 	foto = models.ImageField(upload_to='static/img/proximosEventos', default="nofoto.jpg", null=True)

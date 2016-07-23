@@ -3,10 +3,14 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.utils import timezone
 from datetime import datetime, date, time, timedelta
-import calendar
+from django.utils.safestring import mark_safe
 
 
 from clubcarmona.models import *
+
+
+
+
 
 def post_list1(request):
 	post = Post.objects.all().order_by('fecha_publicacion')
@@ -100,3 +104,8 @@ def post_list(request):
           }
    return render_to_response('Club/post_list.html', context_instance=RequestContext(request, cxt))
 
+
+
+def imagenes(request):
+    a = Albumes.objects.all()
+    return (request,'Club/galeria.html',{'a':a} )

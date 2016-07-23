@@ -1,7 +1,7 @@
 {% extends "Club/plantilla.html" %}
 {% block content %}
 
-    <div style="text-align: center; padding: 12px;background-color: rgba(240, 240, 240, 0.80)";  class="col-lg-12">
+    <div style="text-align: center; padding: 12px;background-color: rgba(240, 240, 240, 0.80)" ; class="col-lg-12">
 
         <h2 STYLE="margin-bottom: 60PX;">ALBUMES DE FOTOS PICASA:</h2>
 
@@ -10,6 +10,12 @@
                 <div class="col-lg-4">
                     <div class="col-lg-10"
                          style="background-color: rgba(255, 255, 255, 0.66); border-radius: 5px; margin-bottom: 10px; text-align: center; height: auto; font-size: 1.6em">
+                        {% if a.foto == "nofoto.jpg" %}
+                            <div class="img-circle"
+                                 style="height: 60px; width: 60px; text-align: center; background-color: purple; color: white; padding-top: 15px; margin: auto">{{ a.nombre|slice:"1" }}</div>
+                        {% else %}
+                            <img src="../static/img/fotografos/{{ a.foto }}">
+                        {% endif %}
                         {{ a.nombre }}
                     </div>
                 </div>
