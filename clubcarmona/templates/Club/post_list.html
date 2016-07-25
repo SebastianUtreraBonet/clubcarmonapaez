@@ -13,29 +13,35 @@
             {% if post.foto.name == 'nofoto.jpg' %}
                 <div class="col-lg-12 ">
                     <a href="ficha/{{ post.id }}">
-                        <h1 style="text-align: left;">{{ post.titulo|title }}</h1></a>
+                        <h1 style="text-align: left;">{{ post.titulo|upper }}</h1></a>
                     {% autoescape off %}
-                        {{ post.texto|truncatewords:100 }}
+                        {{ post.texto|truncatewords:90 }}
+                         {% if post.texto|length > 250 %}
+                            <a href="ficha/{{ post.id }}">[ver más]</a>
+                        {% endif %}
                     {% endautoescape %}
                     <a href="ficha/{{ post.id }}" STYLE="color: indianred"></a>
                     {% if post.fecha_publicacion != null %}
-                        <p style="text-align: right; font-size: 0.9em; color: rgba(119, 119, 119, 0.94)">
-                            Publicado: {{ post.fecha_publicacion }}</p>
+                        <p style="text-align: right; font-size: 0.75em; color: rgba(119, 119, 119, 0.94)">
+                            {{ post.fecha_publicacion }}</p>
                     {% endif %}
                 </div>
             {% else %}
-                <div class="col-lg-2"><img src="../static/img/{{ post.foto }}"></div>
+                <div class="col-lg-2"><img src="{{ post.foto }}" class="col-lg-12"></div>
                 <div class="col-lg-10 ">
                     <a href="ficha/{{ post.id }}">
-                        <h1 style="text-align: left;">{{ post.titulo|title }}</h1></a>
+                        <h1 style="text-align: left;">{{ post.titulo|upper }}</h1></a>
 
                     {% autoescape off %}
-                        {{ post.texto|truncatewords:100 }}
+                        {{ post.texto|truncatewords:90 }}
+                        {% if post.texto|length > 250 %}
+                            <a href="ficha/{{ post.id }}">[ver más]</a>
+                        {% endif %}
                     {% endautoescape %}
                     <a href="ficha/{{ post.id }}" STYLE="color: indianred"></a>
                     {% if post.fecha_publicacion != null %}
-                        <p style="text-align: right; font-size: 0.9em; color: rgba(119, 119, 119, 0.94)">
-                            Publicado: {{ post.fecha_publicacion }}</p>
+                        <p style="text-align: right; font-size: 0.75em; color: rgba(119, 119, 119, 0.94)">
+                            {{ post.fecha_publicacion }}</p>
                     {% endif %}
                 </div>
             {% endif %}

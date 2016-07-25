@@ -19,19 +19,15 @@ def post_list1(request):
 def calendario(request):
     hoy = timezone.datetime.today()
     carreras = Carrera.objects.all()
-    rango = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"]
-    dias10 = timezone.datetime.today()+timedelta(days=10)
-    print(dias10,'hola')
+    mes = {1:"ENERO",2:"FEBRERO",3:"MARZO",4:"ABRIL",5:"MAYO",6:"JUNIO",7:"JULIO",8:"AGOSTO",9:"SEPTIEMBRE",int(10):"OCTUBRE",int(11):"NOVIEMBRE",int(12):"DICIEMBRE"}
+    dias = timezone.datetime.today()+timedelta(days=20)
     return render(request, 'Club/calendario.html', {
             'hoy'     : hoy,
             'carreras':carreras,
-            'rango':rango,
-            'dias10':dias10
+            'mes':mes,
+            'dias':dias
     })
 
-def meses(request):
-    mes = request.path[12::].upper()
-    return render(request,'Club/meses.html',{'mes':mes})
 
 def ficha(request):
 	path = request.path[7::]
@@ -43,19 +39,27 @@ def ficha(request):
 
 def galeria(request):
     album = Albumes.objects.all()
-    return render(request, 'Club/galeria.html',{'album':album})
+    color = ['forestgreen','blueviolet','coral','deeppink','darkorange','darkgreen','crimson','deepskyblue']
+    return render(request, 'Club/galeria.html',{'album':album,'color':color})
 
 
 
 def calcularHora(posts):
-	hora=0
-	minu=0
+	hora=00
+	minu=00
 	hor = ""
 	for i in posts:
 		hora = i.fecha.hour+2
 		minu = i.fecha.minute
 	hor = str(hora)+":"+str(minu)
 	return hor
+
+
+def resultados(request):
+    resultado = Resultados.objects.all()
+    carrera = Carrera.objects.all().order_by('fecha')
+    hoy = timezone.datetime.today()
+    return render(request, 'Club/resultados.html',{'resultado':resultado, 'carrera':carrera, 'hoy':hoy})
 
 def Paginador(request, modelo, paginas, nonRegPag):
 
@@ -95,7 +99,7 @@ def post_list(request):
    #Obtengo los post de mi blog
    init_post = Post.objects.all().order_by("titulo")
    #Inicio el paginador
-   pag = Paginador(request, init_post, 3, 'posts')
+   pag = Paginador(request, init_post, 10, 'posts')
    n = 250
    cxt = {'posts': pag['posts'],
            'totPost': init_post,

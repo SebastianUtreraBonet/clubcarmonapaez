@@ -12,9 +12,9 @@
                          style="background-color: rgba(255, 255, 255, 0.66); border-radius: 5px; margin-bottom: 10px; text-align: center; height: auto; font-size: 1.6em">
                         {% if a.foto == "nofoto.jpg" %}
                             <div class="img-circle"
-                                 style="height: 60px; width: 60px; text-align: center; background-color: purple; color: white; padding-top: 15px; margin: auto">{{ a.nombre|slice:"1" }}</div>
+                                 style="height: 60px; width: 60px; text-align: center; background-color: {{ color|random }}; color:white; padding-top: 15px; margin: auto">{{ a.nombre|slice:"1" }}</div>
                         {% else %}
-                            <img src="../static/img/fotografos/{{ a.foto }}">
+                            <div><img src="{{ a.foto }}" class="img-circle" style="height: 60px; width: 60px; padding-top: 0px; margin: auto"></div>
                         {% endif %}
                         {{ a.nombre }}
                     </div>

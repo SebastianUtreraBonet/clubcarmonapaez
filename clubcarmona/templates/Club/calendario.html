@@ -6,9 +6,9 @@
 {% block content %}
     <div class="col-lg-12" style="background-color:rgba(252, 255, 255, 0.80);border-radius: 8px; padding: 15px;">
         <div class="container">
-            <h1>EVENTOS EN LOS PROXIMOS 14 DIAS</h1>
+            <h1>EVENTOS EN LOS PRÓXIMOS 20 DÍAS</h1>
             {% for carrera in carreras %}
-                {% if carrera.fecha.date >= hoy.date and carrera.fecha.date <= dias10.date %}
+                {% if carrera.fecha.date >= hoy.date and carrera.fecha.date <= dias.date %}
                     <div class="col-lg-2" style="color: rgba(50, 50, 50, 0.96); text-align: center; font-size: 1.3em;">
                         <img src="{{ carrera.foto }}" style="width: 140px">
                         {{ carrera.fecha.day }}/{{ carrera.fecha.month }}/{{ carrera.fecha.year }}
@@ -20,18 +20,23 @@
 
 
         <hr>
-    <div class="container">
-        <h1>EVENTOS POR MESES</h1>
-
-        <div class="col-lg-10 col-lg-offset-1" style="text-align: left">
-
-            {% for i in rango %}
-                <div class="col-lg-2"><h4><a href="calendario/{{ i|lower }}">{{ i }}</a></h4></div>
-            {% endfor %}
+        <div class="container">
+            <h2>TODAS LAS CARRERAS</h2>
         </div>
+        {% for i in mes.items %}
+            {% if i|first >= hoy.month %}
+                <h2>{{ i|last }}</h2>
+                {% for carrera in carreras %}
+                    {% if carrera.fecha.month == i|first and carrera.fecha.date >= hoy.date %}
+                        <div class="col-lg-12" style="color: rgba(50, 50, 50, 0.96); font-size: 1.3em;">
+                            <a href="carrera/{{ carrera.id }}">{{ carrera.fecha.day }}/{{ carrera.fecha.month }}/{{ carrera.fecha.year }}
+                                - {{ carrera.titulo|upper }}</a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
 
-    </div>
-
+        {% endfor %}
     </div>
 
 {% endblock %}

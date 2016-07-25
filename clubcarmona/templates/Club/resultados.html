@@ -1,0 +1,26 @@
+{% extends 'Club/plantilla.html' %}
+{% load staticfiles %}
+<script>
+    setTimeout(window.location('plantilla.html').load(), 2000)
+</script>
+{% block content %}
+    <div class="col-lg-12" style="background-color:rgba(252, 255, 255, 0.80);border-radius: 8px; padding: 15px;">
+
+        <div class="container">
+            <h2>TODAS LOS RESULTADOS</h2>
+            {% for r in resultado %}
+
+                {% for c in carrera %}
+
+                    {% if r.carrera|upper == c.titulo|upper and c.fecha.date <= hoy %}
+                        <a href="{{ r.enlace }}">{{ c.fecha.day }}/{{ c.fecha.month }}/{{ c.fecha.year }} - {{ c.titulo }}</a>
+                    {% endif %}
+
+
+
+            {% endfor %}
+        {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -22,6 +22,8 @@ class Carrera(models.Model):
 	titulo = models.CharField(max_length=250)
 	fecha = models.DateTimeField(default=timezone.now)
 	foto = models.ImageField(upload_to='static/img/proximosEventos', default="nofoto.jpg", null=True)
+	texto = models.CharField(max_length=99999)
+	link = models.CharField(max_length=200)
 	ciudad = models.CharField(max_length=200)
 	provicia = models.CharField(max_length=200, default='Cádiz')
 	distancia = models.IntegerField()
@@ -36,3 +38,10 @@ class Albumes(models.Model):
 
 	def __str__(self):
 		return self.nombre
+
+class Resultados(models.Model):
+	carrera = models.ForeignKey(Carrera)
+	enlace = models.FileField(upload_to='static/resultados', null=True)
+
+	def __str__(self):
+		return self.carrera.titulo
