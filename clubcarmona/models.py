@@ -18,15 +18,24 @@ class Post(models.Model):
 	def __str__(self):
 		return self.titulo
 
+
+class Tipo(models.Model):
+	tipo = models.CharField(max_length=200)
+
+	def __str__(self):
+		return self.tipo
+
 class Carrera(models.Model):
 	titulo = models.CharField(max_length=250)
 	fecha = models.DateTimeField(default=timezone.now)
 	foto = models.ImageField(upload_to='static/img/proximosEventos', default="nofoto.jpg", null=True)
-	texto = models.CharField(max_length=99999)
-	link = models.CharField(max_length=200)
-	ciudad = models.CharField(max_length=200)
+	texto = models.CharField(max_length=99999, blank=True, null=True)
+	link = models.CharField(max_length=200, blank=True, null=True)
+	ciudad = models.CharField(max_length=200, blank=True, null=True)
 	provicia = models.CharField(max_length=200, default='Cádiz')
-	distancia = models.IntegerField()
+	distancia = models.IntegerField(blank=True, null=True)
+	precio = models.ImageField(default=0, blank=True, null=True)
+	tipo = models.ForeignKey(Tipo)
 
 	def __str__(self):
 		return self.titulo
