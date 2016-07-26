@@ -14,10 +14,10 @@
 
         {% autoescape off %}
 
-            <div class="col-lg-9"> </divc>{{ post.texto|linebreaks }}
+            <div class="col-lg-9">{{ post.texto|linebreaks }} </div>
         {% endautoescape %}
 
-        <div class="row" style="text-align: right; margin-top: 20px; color: #3c3c3c; opacity: 0.8; ">{{ post.fecha_publicacion }}</div>
+        <div class="row" style="text-align: right; color: #3c3c3c; opacity: 0.8; margin: 15px 5px 5px 5px">{{ post.fecha_publicacion }}</div>
 
     </div>
 

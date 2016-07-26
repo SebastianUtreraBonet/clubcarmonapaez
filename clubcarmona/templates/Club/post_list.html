@@ -15,7 +15,7 @@
                     <a href="ficha/{{ post.id }}">
                         <h1 style="text-align: left;">{{ post.titulo|upper }}</h1></a>
                     {% autoescape off %}
-                        {{ post.texto|truncatewords:90 }}
+                        {{ post.texto|truncatewords:90|striptags }}
                          {% if post.texto|length > 250 %}
                             <a href="ficha/{{ post.id }}">[ver más]</a>
                         {% endif %}
@@ -33,14 +33,14 @@
                         <h1 style="text-align: left;">{{ post.titulo|upper }}</h1></a>
 
                     {% autoescape off %}
-                        {{ post.texto|truncatewords:90 }}
+                        {{ post.texto|truncatewords:90|striptags }}
                         {% if post.texto|length > 250 %}
                             <a href="ficha/{{ post.id }}">[ver más]</a>
                         {% endif %}
                     {% endautoescape %}
                     <a href="ficha/{{ post.id }}" STYLE="color: indianred"></a>
                     {% if post.fecha_publicacion != null %}
-                        <p style="text-align: right; font-size: 0.75em; color: rgba(119, 119, 119, 0.94)">
+                        <p style="text-align: right; font-size: 0.75em; color: rgba(119, 119, 119, 0.94); margin: 5px">
                             {{ post.fecha_publicacion }}</p>
                     {% endif %}
                 </div>
@@ -48,9 +48,11 @@
         </div>
 
     {% endfor %}
-    <div style="margin-top: 200px">
-        <div class="page-header pager" style="margin-top: 80px">
-            <ul style="margin-top: 299px">
+    <div style="margin-top: 0px">
+
+    {% if posts.count > 10 %}
+     <div class="page-header pager" style="margin-top: 80px">
+            <ul style="margin-top: 0px">
                 <li>
                     {% if paginator.has_prev %}
                         <a href="/?page={{ paginator.firstPage }}"> Inicio </a>
@@ -67,9 +69,14 @@
                         <a style="color:gray; cursor: no-drop;"> Ultima </a>
                     {% endif %}
                 </li>
-                <p>Página {{ paginator.page }} de {{ paginator.pages }} </p>
+                <p style="margin-top: 20px; color: white; font-size: 1.2em;" >Página {{ paginator.page }} de {{ paginator.pages }} </p>
             </ul>
         </div>
+
+    {% else %}
+
+    {% endif %}
+
 
     </div>
 
