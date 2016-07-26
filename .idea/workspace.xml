@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6e439d04-6075-4926-9224-c84455a26340" name="Default" comment="" />
+    <list default="true" id="6e439d04-6075-4926-9224-c84455a26340" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clubcarmona/templates/Club/plantilla.html" afterPath="$PROJECT_DIR$/clubcarmona/templates/Club/plantilla.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clubcarmona/urls.py" afterPath="$PROJECT_DIR$/clubcarmona/urls.py" />
+    </list>
     <ignored path="ClubCarmonaPaez.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -81,6 +85,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clubcarmona/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
@@ -91,20 +105,54 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plantilla.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/clubcarmona/templates/Club/plantilla.html">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ClubCarmonaPaez/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-51.0">
-              <caret line="78" column="31" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ficha.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="plantilla.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/clubcarmona/templates/Club/plantilla.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6761364">
+              <caret line="78" column="43" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#div#1;n#ul#0;n#nav#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#ul#0;n#nav#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#ul#0;n#nav#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/clubcarmona/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="33" column="15" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+                <element signature="e#342#460#0" expanded="true" />
+                <element signature="e#491#951#0" expanded="true" />
+                <element signature="e#1203#1419#0" expanded="true" />
+                <element signature="e#1449#1583#0" expanded="true" />
+                <element signature="e#1615#1846#0" expanded="true" />
+                <element signature="e#1904#3107#0" expanded="true" />
+                <element signature="e#3136#3526#0" expanded="true" />
+                <element signature="e#3557#3632#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ficha.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clubcarmona/templates/Club/ficha.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39729398">
+            <state vertical-scroll-proportion="-12.423077">
               <caret line="19" column="90" selection-start-line="19" selection-start-column="90" selection-end-line="19" selection-end-column="90" />
               <folding />
             </state>
@@ -144,9 +192,7 @@
         <option value="$PROJECT_DIR$/ClubCarmonaPaez/urls.py" />
         <option value="$PROJECT_DIR$/clubcarmona/templates/Club/calendario.html" />
         <option value="$PROJECT_DIR$/clubcarmona/admin.py" />
-        <option value="$PROJECT_DIR$/clubcarmona/templates/Club/plantilla.html" />
         <option value="$PROJECT_DIR$/clubcarmona/templates/Club/meses.html" />
-        <option value="$PROJECT_DIR$/clubcarmona/urls.py" />
         <option value="$PROJECT_DIR$/clubcarmona/views.py" />
         <option value="$PROJECT_DIR$/clubcarmona/models.py" />
         <option value="$PROJECT_DIR$/db.sqlite3" />
@@ -155,6 +201,8 @@
         <option value="$PROJECT_DIR$/clubcarmona/templates/Club/resultados.html" />
         <option value="$PROJECT_DIR$/clubcarmona/templates/Club/post_list.html" />
         <option value="$PROJECT_DIR$/clubcarmona/templates/Club/ficha.html" />
+        <option value="$PROJECT_DIR$/clubcarmona/urls.py" />
+        <option value="$PROJECT_DIR$/clubcarmona/templates/Club/plantilla.html" />
       </list>
     </option>
   </component>
@@ -821,7 +869,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298731" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32871974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -1126,26 +1174,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ClubCarmonaPaez/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clubcarmona/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/clubcarmona/templates/Club/calendario.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
@@ -1183,24 +1211,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clubcarmona/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4159132">
-          <caret line="101" column="41" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-            <element signature="e#342#460#0" expanded="true" />
-            <element signature="e#491#951#0" expanded="true" />
-            <element signature="e#975#1174#0" expanded="true" />
-            <element signature="e#1203#1419#0" expanded="true" />
-            <element signature="e#1449#1583#0" expanded="true" />
-            <element signature="e#1615#1846#0" expanded="true" />
-            <element signature="e#1904#3107#0" expanded="true" />
-            <element signature="e#3557#3632#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ClubCarmonaPaez/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38698012">
@@ -1222,11 +1232,10 @@
         <state vertical-scroll-proportion="0.77938515">
           <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
           <folding>
-            <element signature="e#0#33#0" expanded="true" />
-            <element signature="e#715#731#0" expanded="true" />
-            <element signature="e#1388#1406#0" expanded="true" />
-            <element signature="e#1642#1660#0" expanded="true" />
-            <element signature="e#1824#1850#0" expanded="true" />
+            <element signature="e#0#33#0" expanded="false" />
+            <element signature="e#1388#1406#0" expanded="false" />
+            <element signature="e#1642#1660#0" expanded="false" />
+            <element signature="e#1824#1850#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1260,14 +1269,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clubcarmona/templates/Club/plantilla.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-51.0">
-          <caret line="78" column="31" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/clubcarmona/templates/Club/post_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.230769">
@@ -1286,9 +1287,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/clubcarmona/templates/Club/ficha.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39729398">
+        <state vertical-scroll-proportion="-12.423077">
           <caret line="19" column="90" selection-start-line="19" selection-start-column="90" selection-end-line="19" selection-end-column="90" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clubcarmona/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="15" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#342#460#0" expanded="true" />
+            <element signature="e#491#951#0" expanded="true" />
+            <element signature="e#1203#1419#0" expanded="true" />
+            <element signature="e#1449#1583#0" expanded="true" />
+            <element signature="e#1615#1846#0" expanded="true" />
+            <element signature="e#1904#3107#0" expanded="true" />
+            <element signature="e#3136#3526#0" expanded="true" />
+            <element signature="e#3557#3632#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ClubCarmonaPaez/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clubcarmona/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clubcarmona/templates/Club/plantilla.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6761364">
+          <caret line="78" column="43" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#1;n#ul#0;n#nav#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#ul#0;n#nav#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#ul#0;n#nav#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
