@@ -1,23 +1,24 @@
 {% extends "Club/plantilla.html" %}
 {% block content %}
-    <div class="col-lg-12"
-         style="background-color: rgba(255, 255, 255, 0.80); border-radius: 15px; margin-bottom: 80px;">
+    <div class="col-lg-8 col-lg-offset-2"
+         style="background-color: rgba(255, 255, 255, 0.90); margin-bottom: 80px; padding-bottom: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);">
 
     {% for post in posts %}
-        <h1 style="text-align: center">{{ post.titulo }}</h1>
+
         {% if post.foto.name != 'nofoto.jpg' %}
-            <div class="col-lg-3"><a href="../{{ post.foto }}"><img src="../{{ post.foto }}" style="width: 200px;"></a>
+            <div class="col-lg-4"><a href="../{{ post.foto }}"><img src="../{{ post.foto }}"class="img-responsive" style="width: 350px; margin: 70px auto;"></a>
             </div>
         {% else %}
-            <div class="col-lg-3"></div>
+            <div class="col-lg-4"></div>
         {% endif %}
 
         {% autoescape off %}
-
-            <div class="col-lg-9">{{ post.texto|linebreaks }} </div>
+ <h1 style="text-align: center">{{ post.titulo }}</h1>
+            <div class="col-lg-8" style="z-index: 1; text-align: justify">{{ post.texto }} </div>
         {% endautoescape %}
 
-        <div class="row" style="text-align: right; color: #3c3c3c; opacity: 0.8; margin: 15px 5px 5px 5px">{{ post.fecha_publicacion }}</div>
+        <div class="row"></div>
+            <p style="text-align: right; color: #3c3c3c; opacity: 0.8; margin-right: 20px">{{ post.fecha_publicacion }}</p>
 
     </div>
 

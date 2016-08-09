@@ -1,0 +1,60 @@
+
+<nav class="navbar" style="padding:1em; background-color:rgba(0, 29, 108, 0.86); border-bottom: 3px solid fuchsia">
+    <div class="container">
+        <div class="navbar-left">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a href="/">
+                <div class="navbar-brand" style="font-size:2.5vw; color: deepskyblue; margin:0 -1.2em 0;"
+                     href="/"><span class="" style="font-size: 1.9vw"></span> Club
+                    Carmona
+                    Paez
+                </div>
+            </a>
+        </div>
+        <div class="navbar-right" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                    <form class="navbar-form navbar-left " method="get" action="" role="search">
+                        <div class="form-group">
+                            {% csrf_token %}
+                            <input type="text" id="buscar" name="buscar" value=""
+                                   class="form-group form-control">
+                        </div>
+                        <button type="submit" class="btn btn-default" href="../buscar"><span
+                                class="glyphicon glyphicon-search"></span> Buscar
+                        </button>
+
+                    </form>
+
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<nav class="container-fluid"
+     style=" background-color:rgba(0, 29, 108, 0.86);margin-top:-20px; height: 40px; width: 100%; padding: 0.5em; align-content: center; ">
+    <ul class="container-fluid col-lg-offset-2">
+        <div  style="text-aling:center;" class="col-lg-2" >
+            <a href="/"  style="color: whitesmoke; font-size: 1.2em">Noticias</a>
+        </div>
+      <div  style="text-aling:center;" class="col-lg-2" >
+            <a href="{% url 'calendario' %}" style="color: whitesmoke; font-size: 1.2em">Calendario</a>
+        </div>
+      <div  style="text-aling:center;" class="col-lg-2" >
+            <a href="img"  style="color: whitesmoke; font-size: 1.2em">Club Carmona Paez</a>
+        </div>
+      <div  style="text-aling:center;" class="col-lg-2" >
+            <a href="{% url 'galeria' %}"  style="color: whitesmoke; font-size: 1.2em">Galeria Fotos</a>
+        </div>
+      <div  style="text-aling:center;" class="col-lg-2" >
+            <a href="{% url 'resultados' %}"  style="color: whitesmoke; font-size: 1.2em">Resultados</a>
+        </div>
+    </ul>
+</nav>

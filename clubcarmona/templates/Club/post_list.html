@@ -8,77 +8,116 @@
 
     {% for post in posts %}
 
-        <div class="col-lg-12"
-             style="background-color:rgba(252, 255, 255, 0.80);border-radius: 8px; padding: 10px; font-size: 1.1em; margin:10px; text-align: justify">
-            {% if post.foto.name == 'nofoto.jpg' %}
-                <div class="col-lg-12 ">
-                    <a href="ficha/{{ post.id }}">
-                        <h1 style="text-align: left;">{{ post.titulo|upper }}</h1></a>
-                    {% autoescape off %}
-                        {{ post.texto|truncatewords:90|striptags }}
-                         {% if post.texto|length > 250 %}
-                            <a href="ficha/{{ post.id }}">[ver más]</a>
-                        {% endif %}
-                    {% endautoescape %}
-                    <a href="ficha/{{ post.id }}" STYLE="color: indianred"></a>
-                    {% if post.fecha_publicacion != null %}
-                        <p style="text-align: right; font-size: 0.75em; color: rgba(119, 119, 119, 0.94)">
-                            {{ post.fecha_publicacion }}</p>
-                    {% endif %}
-                </div>
-            {% else %}
-                <div class="col-lg-2"><img src="{{ post.foto }}" class="col-lg-12"></div>
-                <div class="col-lg-10 ">
-                    <a href="ficha/{{ post.id }}">
-                        <h1 style="text-align: left;">{{ post.titulo|upper }}</h1></a>
+        <div class="col-lg-7 col-xs-12" style="">
 
-                    {% autoescape off %}
-                        {{ post.texto|truncatewords:90|striptags }}
-                        {% if post.texto|length > 250 %}
-                            <a href="ficha/{{ post.id }}">[ver más]</a>
+
+                <div class="polaroid col-lg-12" style="margin: 0; padding: 0;">
+                    <div class="col-lg-3 col-md-12 img-responsive" style="margin: 0; padding: 0;">
+                        <div style="background-image: url({{ post.foto }});background-repeat: no-repeat; background-size: cover; background-position: center; min-height: 220px; width: 220px;"></div>
+                    </div>
+                    <div class="col-lg-8 col-md-6" style="text-align: justify; margin-left: 30px; margin-top: 20px; ">
+                        <a href="ficha/{{ post.id }}">
+                            <h3 style="text-align: left;">{{ post.titulo|upper }}</h3>
+                        </a>
+                        {% autoescape off %}
+                            {{ post.texto|truncatewords:60|striptags }}
+                            {% if post.texto|length > 250 %}
+                                <a href="ficha/{{ post.id }}" class="glyphicon glyphicon-triangle-right"></a>
+                            {% endif %}
+                        {% endautoescape %}
+                        <hr style="margin: 5px; padding: 5px">
+                        {% if post.fecha_publicacion != null %}
+                            <p style="text-align: right; font-size: 0.75em; color: rgba(119, 119, 119, 0.94);">
+                                {{ post.fecha_publicacion }}</p>
                         {% endif %}
-                    {% endautoescape %}
-                    <a href="ficha/{{ post.id }}" STYLE="color: indianred"></a>
-                    {% if post.fecha_publicacion != null %}
-                        <p style="text-align: right; font-size: 0.75em; color: rgba(119, 119, 119, 0.94); margin: 5px">
-                            {{ post.fecha_publicacion }}</p>
-                    {% endif %}
+                    </div>
+
+
                 </div>
-            {% endif %}
         </div>
-
     {% endfor %}
-    <div style="margin-top: 0px">
 
-    {% if posts.count > 10 %}
-     <div class="page-header pager" style="margin-top: 80px">
-            <ul style="margin-top: 0px">
-                <li>
-                    {% if paginator.has_prev %}
-                        <a href="/?page={{ paginator.firstPage }}"> Inicio </a>
-                        <a href="/?page={{ paginator.prev_page }}"> Anterior </a>
-                    {% else %}
-                        <a style="color:gray; cursor:not-allowed;"> Inicio </a>
-                        <a style="color:gray; cursor:not-allowed; "> Anterior </a>
-                    {% endif %}
-                    {% if paginator.has_next %}
-                        <a href="/?page={{ paginator.next_page }}"> Siguiente </a>
-                        <a href="/?page={{ paginator.pages }}"> Ultima </a>
-                    {% else %}
-                        <a style="color:gray; cursor: no-drop;"> Siguiente </>
-                        <a style="color:gray; cursor: no-drop;"> Ultima </a>
-                    {% endif %}
-                </li>
-                <p style="margin-top: 20px; color: white; font-size: 1.2em;" >Página {{ paginator.page }} de {{ paginator.pages }} </p>
-            </ul>
+
+    <div class="col-lg-3 col-xs-12 col-lg-offset-1 col-xs-offset-0">
+
+
+        <div class="col-lg-12 col-xs-12" style="background-color: white;">
+            <h3>EVENTOS PRÓXIMOS 20 DÍAS</h3>
+            {% for carrera in carreras %}
+                {% if carrera.fecha.date >= hoy.date and carrera.fecha.date <= dias.date %}
+                    <div class="col-lg-12" style="color: rgba(50, 50, 50, 0.96); font-size: 1.3em;">
+                        <a href="carrera/{{ carrera.id }}">
+                            {{ carrera.fecha.day }}/{{ carrera.fecha.month }}/{{ carrera.fecha.year }}
+                            - {{ carrera.titulo|upper }}</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
+        <div class="col-lg-12 col-xs-12" style="background-color: white; margin-top: 20px;">
+            <h3>ULTIMOS RESULTADOS</h3>
 
-    {% else %}
+            {% for r in resultado %}
 
-    {% endif %}
+                {% for c in carrera %}
 
+                    {% if r.carrera|upper == c.titulo|upper and c.fecha.date <= hoy.date %}
+                        <div class="col-lg-12" style="color: rgba(50, 50, 50, 0.96); font-size: 1.3em;">
+                            <a href="{{ r.enlace }}">{{ c.fecha.day }}/{{ c.fecha.month }}/{{ c.fecha.year }}
+                                - {{ c.titulo|upper }}</a>
+                        </div>
+                    {% endif %}
+
+
+
+                {% endfor %}
+            {% endfor %}
+
+        </div>
 
     </div>
+
+
+    <div class="row">
+
+        <div style="margin-top: 0px">
+
+            {% if posts.count > 10 %}
+                <div class="page-header pager" style="margin-top: 80px">
+                    <ul style="margin-top: 0px">
+                        <li>
+                            {% if paginator.has_prev %}
+                                <a href="/?page={{ paginator.firstPage }}"> Inicio </a>
+                                <a href="/?page={{ paginator.prev_page }}"> Anterior </a>
+                            {% else %}
+                                <a style="color:gray; cursor:not-allowed;"> Inicio </a>
+                                <a style="color:gray; cursor:not-allowed; "> Anterior </a>
+                            {% endif %}
+                            {% if paginator.has_next %}
+                                <a href="/?page={{ paginator.next_page }}"> Siguiente </a>
+                                <a href="/?page={{ paginator.pages }}"> Ultima </a>
+                            {% else %}
+                                <a style="color:gray; cursor: no-drop;"> Siguiente </a>
+                                <a style="color:gray; cursor: no-drop;"> Ultima </a>
+                            {% endif %}
+                        </li>
+                        <p style="margin-top: 20px; color: white; font-size: 1.2em;">Página {{ paginator.page }}
+                            de {{ paginator.pages }} </p>
+                    </ul>
+                </div>
+
+            {% else %}
+
+            {% endif %}
+
+
+        </div>
+    </div>
+
+
+
+
+
+
 
 
 {% endblock %}

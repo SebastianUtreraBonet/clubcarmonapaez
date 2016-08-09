@@ -12,7 +12,7 @@
 
                 {% for c in carrera %}
 
-                    {% if r.carrera|upper == c.titulo|upper and c.fecha.date <= hoy %}
+                    {% if r.carrera|upper == c.titulo|upper and c.fecha.date <= hoy.date %}
                         <a href="{{ r.enlace }}">{{ c.fecha.day }}/{{ c.fecha.month }}/{{ c.fecha.year }} - {{ c.titulo }}</a>
                     {% endif %}
 

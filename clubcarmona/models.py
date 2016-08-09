@@ -8,7 +8,7 @@ class Post(models.Model):
 	titulo = models.CharField(max_length=250)
 	texto = RichTextField(max_length=99999999)
 	fecha = models.DateTimeField(default=timezone.now)
-	fecha_publicacion = models.DateTimeField(blank=True, null=True)
+	fecha_publicacion = models.DateTimeField(blank=True, null=True, default=timezone.now)
 	foto = models.ImageField(upload_to='static/img/proximosEventos', default="nofoto.jpg", null=True)
 
 	def publicacion(self):
@@ -34,7 +34,7 @@ class Carrera(models.Model):
 	ciudad = models.CharField(max_length=200, blank=True, null=True)
 	provicia = models.CharField(max_length=200, default='Cádiz')
 	distancia = models.IntegerField(blank=True, null=True)
-	precio = models.ImageField(default=0, blank=True, null=True)
+	precio = models.FloatField(default=0, blank=True, null=True)
 	tipo = models.ForeignKey(Tipo)
 
 	def __str__(self):

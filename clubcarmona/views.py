@@ -21,7 +21,7 @@ def calendario(request):
     carreras = Carrera.objects.all()
     mes = {1:"ENERO",2:"FEBRERO",3:"MARZO",4:"ABRIL",5:"MAYO",6:"JUNIO",7:"JULIO",8:"AGOSTO",9:"SEPTIEMBRE",int(10):"OCTUBRE",int(11):"NOVIEMBRE",int(12):"DICIEMBRE"}
     dias = timezone.datetime.today()+timedelta(days=20)
-    return render(request, 'Club/calendario.html', {
+    return render(request, 'Club/calendario.html',{
             'hoy'     : hoy,
             'carreras':carreras,
             'mes':mes,
@@ -29,12 +29,22 @@ def calendario(request):
     })
 
 
+def carrera(request):
+	path = request.path[9::]
+	carrera = Carrera.objects.filter(pk=path)
+	hora = calcularHora(Carrera.objects.filter(pk=path))
+	print(hora)
+	return render(request, 'Club/carrera.html',{'carrera':carrera, 'hora':hora,})
+
+
+
 def ficha(request):
 	path = request.path[7::]
 	posts = Post.objects.filter(pk=path)
 	hora = calcularHora(Post.objects.filter(pk=path))
 	print(hora)
-	return render(request, 'Club/ficha.html',{'posts':posts, 'hora':hora,})
+	return render(request, 'Club/ficha.html',{'posts':posts, 'hora':hora})
+
 
 
 def galeria(request):
@@ -97,16 +107,28 @@ def Paginador(request, modelo, paginas, nonRegPag):
 
 def post_list(request):
    #Obtengo los post de mi blog
+   hoy = timezone.datetime.today()
+   carreras = Carrera.objects.all()[0:10:]
+   resultado = Resultados.objects.all()[0:10:]
+   carrera = Carrera.objects.all().order_by('fecha')
+   mes = {1:"ENERO",2:"FEBRERO",3:"MARZO",4:"ABRIL",5:"MAYO",6:"JUNIO",7:"JULIO",8:"AGOSTO",9:"SEPTIEMBRE",int(10):"OCTUBRE",int(11):"NOVIEMBRE",int(12):"DICIEMBRE"}
+   dias = timezone.datetime.today()+timedelta(days=20)
    init_post = Post.objects.all().order_by("titulo")
    #Inicio el paginador
    pag = Paginador(request, init_post, 10, 'posts')
    n = 250
    cxt = {'posts': pag['posts'],
-           'totPost': init_post,
-           'paginator': pag,
-          'n':n
+            'totPost': init_post,
+            'paginator': pag,
+            'n':n,
+            'hoy'     : hoy,
+            'carreras':carreras,
+            'mes':mes,
+            'dias':dias,
+            'resultado':resultado,
+            'carrera':carrera,
           }
-   return render_to_response('Club/post_list.html', context_instance=RequestContext(request, cxt))
+   return render(request, 'Club/post_list.html',cxt)
 
 
 
