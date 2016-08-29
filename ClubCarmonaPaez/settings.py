@@ -157,3 +157,10 @@ CKEDITOR_CONFIGS = {
         ),
     }
 }
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ub.seba@gmail.com'
+EMAIL_HOST_PASSWORD = '7202gppfocus'
+EMAIL_USE_TLS = True

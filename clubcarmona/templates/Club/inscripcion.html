@@ -1,0 +1,127 @@
+{% extends 'Club/plantilla.html' %}
+{% load staticfiles %}
+<script>
+    setTimeout(window.location('plantilla.html').load(), 2000)
+</script>
+
+
+
+{% block content %}
+    <div class="container-fluid">
+
+
+           <div class="col-lg-4 col-xs-12 col-xs-offset-0 pull-right" id="menu2" style="padding-bottom: 20px">
+
+            <div class="col-lg-12 col-xs-12 polaroid" style="background-color: white; padding:0 0 0px 0">
+                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">
+                    PRÓXIMOS
+                    EVENTOS</h4>
+
+                <div class="col-lg-12" style="padding-top:6px ">
+                    <ul class=" list-group">
+                        {% for carrera in carreras %}
+
+                            {% if carrera.fecha.date >= hoy.date %}
+
+                                <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
+                                    <a href="carrera/{{ carrera.id }}">{{ carrera|upper }}</a>
+                                </li>
+
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-lg-12 col-xs-12 polaroid"
+                 style="background-color: white; margin:  20px 0; padding: 0 0 0px 0">
+                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px;">ULTIMOS
+                    RESULTADOS</h4>
+
+                <div class="col-lg-12" style="padding-top:6px;">
+                    <ul class=" list-group">
+                        {% for r in carreras %}
+                            {% if r.resultado != '' and r.fecha.date <= hoy.date %}
+                                <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
+                                    <a href="{{ r.resultado }}">{{ r.fecha.day }}/{{ r.fecha.month }}/{{ r.fecha.year }}
+                                        - {{ r.titulo|upper }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-12 col-xs-12 polaroid"
+                 style="background-color: white; margin:0; padding: 0 0 0px 0">
+                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">ZONA
+                    SOCIOS</h4>
+
+                <div class="col-lg-12" style="padding-top:6px;">
+                    <ul class=" list-group">
+                        <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
+                            <a href="inscripcion">INSCRIPCIÓN A EVENTO</a>
+                        </li>
+                        <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
+                            <a href="listaparticipantes">LISTA DE PARTICIPANTES</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-8 col-xs-12 pull-left">
+
+            <div class="alert-danger polaroid" style="font-size: 1.5em; text-align: center">{{ fail }}</div>
+            <div class="alert-info polaroid" style="font-size: 1.5em; text-align: center">{{ ok }}</div>
+            <div class="polaroid col-lg-12 col-xs-12" style="margin-bottom:20px; padding: 40px; font-size: 1.3em">
+                <form method="POST" class="col-lg-12" id="formulario">{% csrf_token %}
+                    <div style="margin: 10px" class="col-lg-12"><span class="col-lg-3">Dirección email:</span>
+                        <span class="col-lg-9">{{ formulario.email }}</span>
+                    </div>
+                    <div style="margin: 10px" class="col-lg-12">
+                        <span class="col-lg-3">Nº Socio:</span>
+                        <span class="col-lg-3" style="">{{ formulario.socio }}</span>
+                        <span class="col-lg-3" style="text-align: right">DNI:</span>
+                        <span class="col-lg-3" style="">{{ formulario.dni }}</span>
+                    </div>
+                    <div style="margin: 10px" class="col-lg-12">
+                        <span class="col-lg-3">Evento:</span>
+                        <span class="col-lg-9" style="font-size: small">{{ formulario.evento }}</span>
+                    </div>
+                    <div style="margin: 10px" class="col-lg-12">
+                        <span class="col-lg-3">Comentario:</span><span
+                            class="col-lg-9">{{ formulario.comentario }}</span>
+                    </div>
+                    <div class="col-lg-12" style="margin: 30px 0">
+                        <input type="submit" class="btn btn-info col-lg-2 col-lg-push-5" value="ENVIAR"/>
+                    </div>
+
+                </form>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="col-lg-8 col-xs-12 pull-left">
+
+
+            <div class="polaroid col-lg-12 col-xs-12" style="margin-bottom:20px; padding: 40px; font-size: 1.3em">
+                <p style="text-align: center">SERVICIO EXCLUSIVO PARA SOCIOS DEL CLUB CARMONA PÁEZ.</p>
+
+                <p>Con carácter previo hay que abonar la cuota de inscripción en <b>Colchonería Colón</b> o <b>Confecciones
+                    El Carmen.</b></p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+{% endblock %}

@@ -1,30 +1,143 @@
 {% extends "Club/plantilla.html" %}
 {% block content %}
-    <div class="col-lg-12"
-         style="background-color: rgba(255, 255, 255, 0.90); border-radius: 15px; margin-bottom: 80px; padding-bottom: 10px">
+    <div class="container-fluid" xmlns="http://www.w3.org/1999/html">
 
-    {% for carrera in carrera %}
-        <h1 style="text-align: center">{{ carrera.titulo }}</h1>
-        {% if post.foto.name != 'nofoto.jpg' %}
-            <div class="col-lg-4"><a href="../{{ carrera.foto }}"><img src="../{{ carrera.foto }}" style="width: 200px; padding-bottom: 30px"></a>
-                <div>Fecha:{{ carrera.fecha }}<br>
-                     Precio:{{ carrera.precio }} euros.<br>
-                     Inscripción:{{ carrera.link }}
+            <div class="col-lg-4 col-xs-12 col-xs-offset-0 pull-right" id="menu2" style="padding-bottom: 20px">
+
+            <div class="col-lg-12 col-xs-12 polaroid" style="background-color: white; padding:0 0 0px 0">
+                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">
+                    PRÓXIMOS
+                    EVENTOS</h4>
+
+                <div class="col-lg-12" style="padding-top:6px ">
+                    <ul class=" list-group">
+                        {% for carrera in carreras %}
+
+                            {% if carrera.fecha.date >= hoy.date %}
+
+                                <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
+                                    <a href="{{ carrera.id }}">{{ carrera|upper }}</a>
+                                </li>
+
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
                 </div>
 
             </div>
-        {% else %}
-            <div class="col-lg-4"></div>
-        {% endif %}
+            <div class="col-lg-12 col-xs-12 polaroid"
+                 style="background-color: white; margin:  20px 0; padding: 0 0 0px 0">
+                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px;">ULTIMOS
+                    RESULTADOS</h4>
 
-        {% autoescape off %}
+                <div class="col-lg-12" style="padding-top:6px;">
+                    <ul class=" list-group">
+                        {% for r in carreras %}
+                            {% if r.resultado != '' and r.fecha.date <= hoy.date %}
+                                <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
+                                    <a href="../{{ r.resultado }}">{{ r.fecha.day }}/{{ r.fecha.month }}/{{ r.fecha.year }}
+                                        - {{ r.titulo|upper }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-12 col-xs-12 polaroid"
+                 style="background-color: white; margin:0; padding: 0 0 0px 0">
+                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">ZONA
+                    SOCIOS</h4>
 
-            <div class="col-lg-9" style="z-index: 100">{{ carrera.texto }} </div>
-        {% endautoescape %}
+                <div class="col-lg-12" style="padding-top:6px;">
+                    <ul class=" list-group">
+                        <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
+                            <a href="../inscripcion">INSCRIPCIÓN A EVENTO</a>
+                        </li>
+                        <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
+                            <a href="../listaparticipantes">LISTA DE PARTICIPANTES</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    <div class="col-lg-8 col-xs-12"
+         style="background-color: rgba(255, 255, 255, 0.90); margin-bottom: 20px; padding-bottom: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);">
+
+        {% for carrera in carrera %}
+
+            {% if carrera.foto.name != 'nofoto.jpg' %}
+                <div class="col-lg-4"><a href="../{{ carrera.foto }}">
+                    <div style="background-image: url('../{{ carrera.foto }}');background-repeat: no-repeat; background-size: cover; background-position: center; height: 28em; width: auto; min-width: 12em; margin: 40px auto;"></div>
+                </a>
+                </div>
+            {% else %}
+                <div class="col-lg-4 col-xs-12"></div>
+            {% endif %}
+            <h2 style="text-align: center">{{ carrera.titulo }}  <span style="font-size: x-large">({{ carrera.ciudad }})</span> </h2>
+            <div class="col-lg-4 col-xs-12" style="text-align: left; padding: 20px">
+                <p><b>FECHA: </b>{{ carrera.fecha.date }} </p>
+
+                <p><b>HORA DE SALIDA:</b> {{ carrera.fecha|date:' H:i' }}</p>
+                <p><b>CIUDAD:</b> {{ carrera.ciudad }}</p>
+                {% if carrera.precio|floatformat > '0' %}
+                    <p><b>PRECIO:</b> {{ carrera.precio }} EUR.</p>
+                {% else %}
+                    <p><b>PRECIO:</b> GRATIS.</p>
+                {% endif %}
+                <p><b>REFERENCIA:</b> <a href="{{ carrera.link }}" target="_blank"> Aquí</a></p>
+
+                <p><b>PARTICIPANTES:</b> <a href="../listaparticipantes#{{ carrera.id }}">Aquí</a></p>
+
+
+            </div>
+            <div class="col-lg-4 col-xs-12" style="text-align: left; padding: 20px;" >
+                {% if carrera.resultado != '' %}
+                    <b>CLASIFICACIÓN:</b><a href="../{{ carrera.resultado }}"> Descargar <span
+                        class="glyphicon glyphicon-circle-arrow-down"> </span> </a>
+                {% endif %}
+                    {% if carrera.galeria_fotos_1 != '' %}
+                        <p></p><b>GALERIA DE FOTOS:</b></p> <p><a href="{{ carrera.galeria_fotos_1 }}" target="_blank" style="text-align: right"> Galeria 1 <span class="glyphicon glyphicon-camera"></span></a></p>
+                    {% endif %}
+                    {% if carrera.galeria_fotos_2 != '' %}
+                        <p><a href="{{ carrera.galeria_fotos_2 }}" target="_blank" style="text-align: right">Galeria 2 <span class="glyphicon glyphicon-camera"></span></a></p>
+                    {% endif %}
+                    {% if carrera.galeria_fotos_3 != '' %}
+                        <a href="{{ carrera.galeria_fotos_3 }}" target="_blank" style="text-align: right">Galeria 3 <span class="glyphicon glyphicon-camera"></span></a>
+                    {% endif %}
 
 
 
-    </div>
+            </div>
 
-    {% endfor %}
+            {% autoescape off %}
+                <div class="col-lg-8"
+                     style="z-index: 1; text-align: justify;  margin-top: 0px">&nbsp{{ carrera.texto }} </div>
+            {% endautoescape %}
+            {% if carrera.fecha.date <= d.date and hoy.date <= carrera.fecha.date %}
+                {% if carrera.link == '' %}
+                <a href="{{ carrera.link }}" style="color: white"> <div class="col-lg-12 btn-warning" type="button" target="_blank"
+                        style="text-align: center;margin: 0;padding: 0; font-size: large;">FALTAN MENOS DE 5 DÍAS PARA LA CARRERA EL PLAZO DE
+                        INSCRIPCIÓN PUDO HABER TERMINADO</div></a>
+
+                {% else %}
+                  <a href="{{ carrera.link }}" style="color: white"> <div class="col-lg-12 btn-warning" type="button" target="_blank"
+                        style="text-align: center;margin: 0;padding: 0; font-size: large;">FALTAN MENOS DE 5 DÍAS PARA LA CARRERA EL PLAZO DE
+                        INSCRIPCIÓN PUDO HABER TERMINADO</div></a>
+                {% endif %}
+
+            {% endif %}
+            {% if hoy.date > carrera.fecha.date %}
+                <p class="col-lg-12 btn-danger" type="button" href="http:\\{{ carrera.link }}" target="_blank"
+                   style="text-align: center; font-size: large; cursor: default"> LA CARRERA SE CELEBRO DEL
+                    DIA: {{ carrera.fecha }}</p>
+            {% endif %}
+            </div>
+
+        {% endfor %}
+
+
+</div>
+
 {% endblock %}
