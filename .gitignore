@@ -1,5 +1,4 @@
 *.pyc
-*.py
 __pycache__
 myvenv
 club.sqlite3
