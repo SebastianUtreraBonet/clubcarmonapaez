@@ -23,7 +23,7 @@ def contactomail(request):
                        +"\nNºSocio: "+str(formulario.cleaned_data['socio'])\
                        +"\n\nEvento: "+str(formulario.cleaned_data['evento'])\
                        +"\n\nComentario: "+formulario.cleaned_data['comentario']
-            mail = EmailMessage(asunto, mensaje, to=['ub.seba@gmail.com'])
+            mail = EmailMessage(asunto, mensaje, to=['clubrafaelcarmonapaez@gmail.com'])
             mail.send()
             ok = "El email se ha enviado con exito."
             return render_to_response('Club/inscripcion.html',{'ok':ok, 'formulario':formulario,'hoy'     : hoy,

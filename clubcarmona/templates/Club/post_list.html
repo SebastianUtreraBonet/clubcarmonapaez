@@ -17,11 +17,16 @@
                     <ul class=" list-group">
                         {% for carrera in carreras %}
 
-                            {% if carrera.fecha.date >= hoy.date and carrera.resultado != '' %}
-
+                            {% if carrera.fecha.date >= hoy.date and carrera.resultado == '' %}
+                                {% if forloop.counter|divisibleby:2 == 0 %}
                                 <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
                                     <a href="carrera/{{ carrera.id }}">{{ carrera|upper }}</a>
                                 </li>
+                                    {% else %}
+                                    <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
+                                    <a href="carrera/{{ carrera.id }}" style="color: #003366">{{ carrera|upper }}</a>
+                                </li>
+                                {% endif %}
 
                             {% endif %}
                         {% endfor %}
