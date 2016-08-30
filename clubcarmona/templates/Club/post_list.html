@@ -18,14 +18,20 @@
                         {% for carrera in carreras %}
 
                             {% if carrera.fecha.date >= hoy.date and carrera.resultado == '' %}
-                                {% if forloop.counter|divisibleby:2 == 0 %}
+                                {% if forloop.counter|divisibleby:2 != 0 %}
                                 <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
                                     <a href="carrera/{{ carrera.id }}">{{ carrera|upper }}</a>
                                 </li>
+                                     {% if forloop.last != True %}
+                                    <hr style="padding: 0px;margin: 6px auto">
+                                        {% endif %}
                                     {% else %}
-                                    <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                                    <a href="carrera/{{ carrera.id }}" style="color: #003366">{{ carrera|upper }}</a>
+                                    <li class="list-unstyled" style="vertical-align: middle;background-color: #dff0ff; padding: 4px 0 0">
+                                    <a href="carrera/{{ carrera.id }}" style="color: #0033aa">{{ carrera|upper }}</a>
                                 </li>
+                                    {% if forloop.last != True %}
+                                         <hr style="padding: 0px;margin: 6px auto">
+                                    {% endif %}
                                 {% endif %}
 
                             {% endif %}
