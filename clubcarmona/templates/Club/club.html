@@ -5,99 +5,12 @@
 </script>
 
 {% block content %}
-    <div class="container-fluid">
-
-        <div class="col-lg-4 col-xs-12 col-xs-offset-0 pull-right" id="menu2" style="padding-bottom: 20px">
 
 
-            <div class="col-lg-12 col-xs-12 polaroid" style="background-color: white; padding:0; margin-bottom: 20px" id="m">
-                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px;">CLUB CARMONA
-                    PÁEZ</h4>
-
-                <ul style="padding: 20px;">
-                    <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                        <a href="#presentacion">PRESENTACIÓN</a>
-                    </li>
-                    <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                        <a href="#historia">HISTORIA</a>
-                    </li>
-                    <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                        <a href="#biografia">BIOGRAFÍA</a>
-                    </li>
-                    <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                        <a href="contacta.html">CONTACTA</a>
-                    </li>
-                    <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                        <a href="formulariosocio.html">HAZTE SOCIO</a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-            <div class="col-lg-12 col-xs-12 polaroid" style="background-color: white; padding:0 0 0px 0">
-                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">
-                    PRÓXIMOS
-                    EVENTOS</h4>
-
-                <div class="col-lg-12" style="padding-top:6px ">
-                    <ul class=" list-group">
-                        {% for carrera in carreras %}
-
-                            {% if carrera.fecha.date >= hoy.date %}
-
-                                <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                                    <a href="carrera/{{ carrera.id }}">{{ carrera|upper }}</a>
-                                </li>
-
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
-
-            </div>
-            <div class="col-lg-12 col-xs-12 polaroid"
-                 style="background-color: white; margin:  20px 0; padding: 0 0 0px 0">
-                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px;">ULTIMOS
-                    RESULTADOS</h4>
-
-                <div class="col-lg-12" style="padding-top:6px;">
-                    <ul class=" list-group">
-                        {% for r in carreras %}
-                            {% if r.resultado != '' and r.fecha.date <= hoy.date %}
-                                <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                                    <a href="{{ r.resultado }}">{{ r.fecha.day }}/{{ r.fecha.month }}/{{ r.fecha.year }}
-                                        - {{ r.titulo|upper }}</a>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-12 col-xs-12 polaroid"
-                 style="background-color: white; margin:0; padding: 0 0 0px 0">
-                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">ZONA
-                    SOCIOS</h4>
-
-                <div class="col-lg-12" style="padding-top:6px;">
-                    <ul class=" list-group">
-                        <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                            <a href="inscripcion">INSCRIPCIÓN A EVENTO</a>
-                        </li>
-                        <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                            <a href="listaparticipantes">LISTA DE PARTICIPANTES</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
+        <div class="col-lg-12 col-xs-12 pull-left">
 
 
-        <div class="col-lg-8 col-xs-12 pull-left">
-
-
-            <div class="polaroid col-lg-12 col-xs-12 left" style="margin-bottom:20px; padding: 40px; font-size: 1.3em"
+            <div class="polaroid col-lg-12 col-xs-12 left" style="margin-bottom:20px; padding: 0px; font-size: 1em"
                  id="presentacion">
                 <h2 style="text-align: center; text-decoration: underline;">PRESENTACIÓN</h2>
 
@@ -217,7 +130,7 @@
 
             </div>
 
-            <div class="polaroid col-lg-12 col-xs-12" style="margin-bottom:20px; padding: 40px; font-size: 1.3em">
+            <div class="polaroid col-lg-12 col-xs-12" style="margin-bottom:20px; padding: 0px; font-size: 1em">
 
 
                 <h2 style="text-align: center; text-decoration: underline;" id="historia"> HISTORIA DE LA CREACIÓN Y
@@ -881,7 +794,7 @@
                 </div>
             </div>
 
-            <div class="polaroid col-lg-12 col-xs-12 left" style="margin-bottom:20px; padding: 40px; font-size: 1.3em"
+            <div class="polaroid col-lg-12 col-xs-12 left" style="margin-bottom:20px; padding: 0px; font-size: 1em"
                  id="biografia">
                 <h2 style="text-align: center; text-decoration: underline;">BIOGRAFÍA</h2>
 

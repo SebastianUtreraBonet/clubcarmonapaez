@@ -7,121 +7,56 @@
 
 
 {% block content %}
-    <div class="container-fluid">
 
 
-           <div class="col-lg-4 col-xs-12 col-xs-offset-0 pull-right" id="menu2" style="padding-bottom: 20px">
 
-            <div class="col-lg-12 col-xs-12 polaroid" style="background-color: white; padding:0 0 0px 0">
-                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">
-                    PRÓXIMOS
-                    EVENTOS</h4>
 
-                <div class="col-lg-12" style="padding-top:6px ">
-                    <ul class=" list-group">
-                        {% for carrera in carreras %}
+    <div class="polaroid col-lg-12 col-xs-12 pull-left" id="ins"
+         style="margin-bottom:20px; font-size: 1.3em;padding-top: 60px; text-align: right">
+        <div class="alert-danger" style="font-size: 1em; text-align: center; padding: 0; margin: 0">{{ fail }}</div>
 
-                            {% if carrera.fecha.date >= hoy.date %}
+        <div class="alert-info" style="font-size: 1em; text-align: center">{{ ok }}</div>
 
-                                <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                                    <a href="carrera/{{ carrera.id }}">{{ carrera|upper }}</a>
-                                </li>
-
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
-
+        <form method="POST" class="col-lg-10 col-xs-12 col-lg-offset-1" id="formulario" style="margin: 0; padding: 0">{% csrf_token %}
+            <div style="margin: 10px 0;" class="col-lg-12 col-xs-12"><span class="col-lg-3">Dirección email:</span>
+                <span class="col-lg-9 col-xs-12">{{ formulario.email }}</span>
             </div>
-            <div class="col-lg-12 col-xs-12 polaroid"
-                 style="background-color: white; margin:  20px 0; padding: 0 0 0px 0">
-                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px;">ULTIMOS
-                    RESULTADOS</h4>
-
-                <div class="col-lg-12" style="padding-top:6px;">
-                    <ul class=" list-group">
-                        {% for r in carreras %}
-                            {% if r.resultado != '' and r.fecha.date <= hoy.date %}
-                                <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                                    <a href="{{ r.resultado }}">{{ r.fecha.day }}/{{ r.fecha.month }}/{{ r.fecha.year }}
-                                        - {{ r.titulo|upper }}</a>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
+            <div style="margin: 10px 0; " class="col-lg-12 col-xs-12">
+                <span class="col-lg-3 col-xs-12" style="margin:10px 0;">Nº Socio:</span>
+                <span class="col-lg-3 col-xs-12">{{ formulario.socio }}</span>
+                <span class="col-lg-3 " style="text-align: right">DNI:</span>
+                <span class="col-lg-3 col-xs-12">{{ formulario.dni }}</span>
             </div>
-            <div class="col-lg-12 col-xs-12 polaroid"
-                 style="background-color: white; margin:0; padding: 0 0 0px 0">
-                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">ZONA
-                    SOCIOS</h4>
-
-                <div class="col-lg-12" style="padding-top:6px;">
-                    <ul class=" list-group">
-                        <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                            <a href="inscripcion">INSCRIPCIÓN A EVENTO</a>
-                        </li>
-                        <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                            <a href="listaparticipantes">LISTA DE PARTICIPANTES</a>
-                        </li>
-                    </ul>
-                </div>
+            <div style="margin: 10px 0" class="col-lg-12 col-xs-12">
+                <span class="col-lg-3 col-xs-12">Evento:</span>
+                <span class="col-lg-9 col-xs-12" style="font-size: small">{{ formulario.evento }}</span>
+            </div>
+            <div style="margin: 10px 0" class="col-lg-12 col-xs-12">
+                <span class="col-lg-3 col-xs-12">Comentario:</span><span
+                    class="col-lg-9 col-xs-12">{{ formulario.comentario }}</span>
+            </div>
+            <div class="col-lg-12 col-xs-12 " style="margin: 30px">
+                <input type="submit" class="btn btn-info col-lg-4 col-lg-offset-4 col-xs-4 col-xs-offset-3"
+                       value="ENVIAR"/>
             </div>
 
-        </div>
+        </form>
+
+    </div>
 
 
-        <div class="col-lg-8 col-xs-12 pull-left">
-
-            <div class="alert-danger polaroid" style="font-size: 1.5em; text-align: center">{{ fail }}</div>
-            <div class="alert-info polaroid" style="font-size: 1.5em; text-align: center">{{ ok }}</div>
-            <div class="polaroid col-lg-12 col-xs-12" style="margin-bottom:20px; padding: 40px; font-size: 1.3em">
-                <form method="POST" class="col-lg-12" id="formulario">{% csrf_token %}
-                    <div style="margin: 10px" class="col-lg-12"><span class="col-lg-3">Dirección email:</span>
-                        <span class="col-lg-9">{{ formulario.email }}</span>
-                    </div>
-                    <div style="margin: 10px" class="col-lg-12">
-                        <span class="col-lg-3">Nº Socio:</span>
-                        <span class="col-lg-3" style="">{{ formulario.socio }}</span>
-                        <span class="col-lg-3" style="text-align: right">DNI:</span>
-                        <span class="col-lg-3" style="">{{ formulario.dni }}</span>
-                    </div>
-                    <div style="margin: 10px" class="col-lg-12">
-                        <span class="col-lg-3">Evento:</span>
-                        <span class="col-lg-9" style="font-size: small">{{ formulario.evento }}</span>
-                    </div>
-                    <div style="margin: 10px" class="col-lg-12">
-                        <span class="col-lg-3">Comentario:</span><span
-                            class="col-lg-9">{{ formulario.comentario }}</span>
-                    </div>
-                    <div class="col-lg-12" style="margin: 30px 0">
-                        <input type="submit" class="btn btn-info col-lg-2 col-lg-push-5" value="ENVIAR"/>
-                    </div>
-
-                </form>
-
-            </div>
 
 
-        </div>
 
+    <div class="col-lg-12 col-xs-12 pull-left">
 
-        <div class="col-lg-8 col-xs-12 pull-left">
+    <div class="polaroid col-lg-12 col-xs-12" style="margin-bottom:20px; padding: 40px; font-size: 1.3em">
+        <p style="text-align: center">SERVICIO EXCLUSIVO PARA SOCIOS DEL CLUB CARMONA PÁEZ.</p>
 
+        <p>Con carácter previo hay que abonar la cuota de inscripción en <b>Colchonería Colón</b> o <b>Confecciones
+            El Carmen.</b></p>
 
-            <div class="polaroid col-lg-12 col-xs-12" style="margin-bottom:20px; padding: 40px; font-size: 1.3em">
-                <p style="text-align: center">SERVICIO EXCLUSIVO PARA SOCIOS DEL CLUB CARMONA PÁEZ.</p>
-
-                <p>Con carácter previo hay que abonar la cuota de inscripción en <b>Colchonería Colón</b> o <b>Confecciones
-                    El Carmen.</b></p>
-
-
-            </div>
-
-
-        </div>
-
-
+    </div>
     </div>
 
 {% endblock %}

@@ -8,13 +8,14 @@ from .forms import FormularioContacto
 
 
 def contactomail(request):
-    formulario = FormularioContacto(initial={'comentario':' '})
+    formulario = FormularioContacto(initial={'comentario':''})
     hoy = timezone.datetime.today()
     carreras = Carrera.objects.all().order_by('fecha')[0:10:]
+    proximos = Carrera.objects.filter(fecha__gte=datetime.today())[:7]
     carrera = Carrera.objects.all().order_by('fecha')
     fail = "No se pudo enviar el email, compruebe que todos los campos estan rellenos correctamente."
     if request.method == 'POST':
-        formulario = FormularioContacto(request.POST,initial={'comentario':'siiiii'})
+        formulario = FormularioContacto(request.POST,initial={'comentario':'sin comentario'})
 
         if formulario.is_valid():
             asunto = "INSCRIPCIÓN"
@@ -28,15 +29,19 @@ def contactomail(request):
             ok = "El email se ha enviado con exito."
             return render_to_response('Club/inscripcion.html',{'ok':ok, 'formulario':formulario,'hoy'     : hoy,
                                                        'carreras':carreras,
+                                                        'proximos':proximos,
                                                        'carrera':carrera,}, context_instance=RequestContext(request))
 
         return render_to_response('Club/inscripcion.html',{'fail':fail,'formulario':formulario,'hoy'     : hoy,
                                                        'carreras':carreras,
+                                                           'proximos':proximos,
                                                        'carrera':carrera,}, context_instance=RequestContext(request))
     return render_to_response('Club/inscripcion.html',{'formulario':formulario,
                                                        'hoy'     : hoy,
                                                        'carreras':carreras,
+                                                       'proximos':proximos,
                                                        'carrera':carrera,}, context_instance=RequestContext(request))
+
 
 
 
@@ -46,14 +51,18 @@ def post_list1(request):
 	return render(request, 'Club/post_list.html', {'posts':post})
 
 def calendario(request):
+    proximos = Carrera.objects.filter(fecha__gte=datetime.today())[:7]
     hoy = timezone.datetime.today()
     carreras = Carrera.objects.all().order_by('fecha')
+    car = Carrera.objects.filter(fecha__gte=hoy).order_by('fecha')[:4]
     mes = {1:"ENERO",2:"FEBRERO",3:"MARZO",4:"ABRIL",5:"MAYO",6:"JUNIO",7:"JULIO",8:"AGOSTO",9:"SEPTIEMBRE",int(10):"OCTUBRE",int(11):"NOVIEMBRE",int(12):"DICIEMBRE"}
-    dias = timezone.datetime.today()+timedelta(days=20)
-    d = timezone.datetime.today()+timedelta(days=5)
+    dias = timezone.datetime.today()+timedelta(days=90)
+    d = timezone.datetime.today()+timedelta(days=10)
     return render(request, 'Club/calendario.html',{
             'hoy'     : hoy,
+            'proximos':proximos,
             'carreras':carreras,
+            'car':car,
             'mes':mes,
             'dias':dias,
             'd':d
@@ -62,6 +71,7 @@ def calendario(request):
 
 def carrera(request):
     path = request.path[9::]
+    proximos = Carrera.objects.filter(fecha__gte=datetime.today())[:7]
     carrera = Carrera.objects.filter(pk=path)
     hora = calcularHora(Carrera.objects.filter(pk=path))
     d = timezone.datetime.today()+timedelta(days=5)
@@ -71,6 +81,7 @@ def carrera(request):
     dias = timezone.datetime.today()+timedelta(days=20)
     return render(request, 'Club/carrera.html',{'carrera':carrera, 'hora':hora, 'd':d,
                                                 'hoy'     : hoy,
+                                                'proximos':proximos,
                                                 'carreras':carreras,
                                                 'dias':dias,
                                                 'carr':carr,})
@@ -81,13 +92,14 @@ def ficha(request):
     path = request.path[7::]
     posts = Post.objects.filter(pk=path)
     hora = calcularHora(Post.objects.filter(pk=path))
-    print(hora)
+    proximos = Carrera.objects.filter(fecha__gte=datetime.today())[:7]
     hoy = timezone.datetime.today()
     carreras = Carrera.objects.all().order_by('fecha')[0:10:]
     carrera = Carrera.objects.all().order_by('fecha')
     dias = timezone.datetime.today()+timedelta(days=20)
     return render(request, 'Club/ficha.html',{'posts':posts, 'hora':hora,
                                                 'hoy'     : hoy,
+                                                'proximos':proximos,
                                                 'carreras':carreras,
                                                 'dias':dias,
                                                 'carrera':carrera,})
@@ -98,6 +110,7 @@ def galeria(request):
     album = Albume.objects.all()
     hoy = timezone.datetime.today()
     carreras = Carrera.objects.all().order_by('fecha')[0:10:]
+    proximos = Carrera.objects.filter(fecha__gte=datetime.today())[:7]
     carrera = Carrera.objects.all().order_by('fecha')
     dias = timezone.datetime.today()+timedelta(days=20)
     color = ['forestgreen','blueviolet','coral','deeppink','darkorange','darkgreen','crimson','deepskyblue']
@@ -105,7 +118,7 @@ def galeria(request):
                                                 'color':color,
                                                 'hoy'     : hoy,
                                                 'carreras':carreras,
-
+                                                'proximos':proximos,
                                                 'dias':dias,
                                                 'carrera':carrera,})
 
@@ -125,10 +138,12 @@ def calcularHora(posts):
 def club(request):
     hoy = timezone.datetime.today()
     carreras = Carrera.objects.all().order_by('fecha')[0:10:]
+    proximos = Carrera.objects.filter(fecha__gte=datetime.today())[:7]
     carrera = Carrera.objects.all().order_by('fecha')
     return render(request, 'Club/club.html',{
             'hoy'     : hoy,
             'carreras':carreras,
+            'proximos':proximos,
             'carrera':carrera,})
 
 
@@ -138,12 +153,14 @@ def club(request):
 def participantes(request):
     hoy = timezone.datetime.today()
     carreras = Carrera.objects.all().order_by('fecha')[0:10:]
+    proximos = Carrera.objects.filter(fecha__gte=datetime.today())[:7]
     carrera = Carrera.objects.all().order_by('fecha')
     participantes = Participante.objects.all()
     actualizado = max(Participante.objects.filter(fecha__lte=timezone.datetime.today()))
     return render(request, 'Club/participantes.html', {'participantes':participantes,
                                                        'actualizado':actualizado,
                                                        'hoy'     : hoy,
+                                                       'proximos': proximos,
                                                         'carreras':carreras,
                                                         'carrera':carrera,})
 
@@ -155,12 +172,14 @@ def resultados(request):
     hoy = timezone.datetime.today()
     carreras = Carrera.objects.all().order_by('fecha').reverse()
     carreras2 = Carrera.objects.all().order_by('fecha')[0:10:]
+    proximos = Carrera.objects.filter(fecha__gte=datetime.today())[:7]
     mes = {1:"ENERO",2:"FEBRERO",3:"MARZO",4:"ABRIL",5:"MAYO",6:"JUNIO",7:"JULIO",8:"AGOSTO",9:"SEPTIEMBRE",int(10):"OCTUBRE",int(11):"NOVIEMBRE",int(12):"DICIEMBRE"}
     dias = timezone.datetime.today()+timedelta(days=20)
     d = timezone.datetime.today()+timedelta(days=5)
     mes2 = calmes(mes)
     return render(request, 'Club/resultados.html',{
             'hoy'     : hoy,
+            'proximos':proximos,
             'carreras':carreras,
             'carreras2':carreras2,
             'mes2':mes2,
@@ -217,6 +236,7 @@ def post_list(request):
    #Obtengo los post de mi blog
    hoy = timezone.datetime.today()
    carreras = Carrera.objects.all().order_by('fecha')[0:10:]
+   proximos = Carrera.objects.filter(fecha__gte=datetime.today())[:7]
    carrera = Carrera.objects.all().order_by('fecha')
    mes = {1:"ENERO",2:"FEBRERO",3:"MARZO",4:"ABRIL",5:"MAYO",6:"JUNIO",7:"JULIO",8:"AGOSTO",9:"SEPTIEMBRE",int(10):"OCTUBRE",int(11):"NOVIEMBRE",int(12):"DICIEMBRE"}
    dias = timezone.datetime.today()+timedelta(days=20)
@@ -233,6 +253,7 @@ def post_list(request):
             'mes':mes,
             'dias':dias,
             'carrera':carrera,
+            'proximos':proximos,
           }
    return render(request, 'Club/post_list.html',cxt)
 
@@ -258,6 +279,7 @@ def buscar(request):
     hoy = timezone.datetime.today()
     carreras = Carrera.objects.all().order_by('fecha')[0:10:]
     carrera2 = Carrera.objects.all().order_by('fecha')
+    proximos = Carrera.objects.filter(fecha__gte=datetime.today())[:7]
     query = request.GET.get('buscar')
     if len(query) >= 1:
 
@@ -269,7 +291,7 @@ def buscar(request):
     
 
     return render(request, "Club/buscador.html", {
-
+            'proximos':proximos,
             'hoy'     : hoy,
             'carreras':carreras,
             'carrera':carrera2,

@@ -18,72 +18,182 @@
     <link href="{% static 'css/style.css' %}" media="screen" rel="stylesheet" type="text/css">
 </head>
 
-<body style="background-color:#efefef; background-size: cover;" id="inicio" >
-    <header style="border: none; ">
-        <div id="cabecera" style="background: url('/static/img/head2.jpg') center no-repeat; background-size: cover; height: 290px;" class="img-responsive">
-            </div>
-        <div class="navbar navbar-default nav" role="navigation" style="z-index: 1000; margin: 0; padding: 0; border: none">
+<body style="background-color:#efefef; background-size: cover;" id="inicio">
+<header style="border: none; ">
+    <div id="cabecera"
+         style="background: url('/static/img/head2.jpg') center no-repeat; background-size: cover; height: 290px;"
+         class="img-responsive">
+    </div>
+    <div class="navbar navbar-default nav" role="navigation" style="z-index: 1000; margin: 0; padding: 0; border: none">
 
-            <div class="navbar-header" style="border: none;">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Desplegar navegación</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+        <div class="navbar-header" style="border: none;">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Desplegar navegación</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse"
+             style="margin: 0; border-radius: 0px; margin-left: -15px">
+            <ul class="nav navbar-nav" style="font-size: 1.2em; font-weight: 200; padding-left: 5%;">
+                <li><a href="/">Noticias</a></li>
+                <li><a href="{% url 'calendario' %}">Calendario</a></li>
+                <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          Club <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="club#presentacion">Presentación</a></li>
+          <li><a href="club#historia">Historia</a></li>
+          <li><a href="club#biografia">Biografía</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Contacta</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Hazte socio</a></li>
+        </ul>
+      </li>
+                <li><a href="{% url 'galeria' %}">Galeria Fotos</a></li>
+                <li><a href="{% url 'resultados' %}">Resultados</a></li>
+            </ul>
+            <a id="admin" class="glyphicon glyphicon-cog navbar-right" style="margin: 10px; padding-top: 5px; font-size: 1.5em"
+               href="../admin"></a>
+
+            <form class="navbar-form navbar-right" role="search" style="padding-right:5%;" method="get"
+                  action="{% url 'buscar' %}" id="bus">
+                <div class="form-group">
+                    {% csrf_token %}
+                    <input type="text" id="buscar" name="buscar" value="" class="form-group form-control">
+                </div>
+                <button type="submit" class="btn btn-default" href="../buscar"><span
+                        class="glyphicon glyphicon-search"></span> Buscar
                 </button>
+            </form>
 
-            </div>
-
-            <div class="collapse navbar-collapse navbar-ex1-collapse" style="margin: 0; border-radius: 0px; margin-left: -15px">
-                <ul class="nav navbar-nav" style="font-size: 1.2em; font-weight: 200; padding-left: 5%;">
-                    <li><a href="/">Noticias</a></li>
-                    <li><a href="{% url 'calendario' %}">Calendario</a></li>
-                    <li><a href="{% url 'club' %}">Club</a></li>
-                    <li><a href="{% url 'galeria' %}" >Galeria Fotos</a></li>
-                    <li><a href="{% url 'resultados' %}" >Resultados</a></li>
-                </ul>
-<a class="glyphicon glyphicon-cog navbar-right" style="margin: 10px; padding-top: 5px; font-size: 1.5em" href="../admin" ></a>
-                <form class="navbar-form navbar-right" role="search" style="padding-right:5%;" method="get" action="{% url 'buscar' %}">
-                                      <div class="form-group">
-                        {% csrf_token %}
-                         <input type="text" id="buscar" name="buscar" value="" class="form-group form-control">
-                    </div>
-                    <button type="submit" class="btn btn-default" href="../buscar"><span class="glyphicon glyphicon-search"></span> Buscar</button>
-                </form>
-
-            </div>
         </div>
-
-    </header>
-
-    <div class="col-lg-10 col-lg-offset-1" id="bloque" style="background-color:transparent;   background-size: contain; padding: 20px; margin-top: 5px; margin-bottom: 90px; min-height: 382px; border: none">
-        {% block content %}
-
-        {% endblock %}
-
-    </div>
-    <footer class="col-lg-12" style="height: auto; background-color: #ddd; padding: 20px;">
-        <div class="col-lg-3" style="padding-top: 10px;height: 140px; border-right: 0.05em solid #f0f0f0">
-
-            <p>Club de Atletismo Carmona Páez.</p>
-            <p><span class="glyphicon glyphicon-map-marker"></span> Plaza Emperador Carlos, s/n.<br> 11100 San Fernando (Cádiz).</p>
-            <p><span class="glyphicon glyphicon-earphone"></span> 655826975</p>
-            <p><span class="glyphicon glyphicon-envelope"></span><a href="mailto:admin1@clubcarmonapaez.com" style="color: #2e2e2e"> admin1@clubcarmonapaez.com</a></p>
-        </div>
-        <div class="col-lg-3" style="border-right:0.05em solid #f0f0f0; padding-top: 10px; height: 140px;">
-            <p>La sede social del club tiene el siguiente horario habitual de apertura:<br><span class="glyphicon glyphicon-time"></span> Viernes a las 21:00 horas. </p><br>
-            <p>Siguenos en facebook: <a href="https://www.facebook.com/groups/264525040262137/?fref=ts" target="_blank"> <img src="../static/img/face.png"; width="45px"; height="30px"/> </a></p>
-        </div>
-<div class="col-lg-3" style="text-align: right; padding-top: 10px">
-
     </div>
 
-        <div class="col-lg-3" style="text-align: right; padding-top: 10px">
-            <p>Sitio web desarrollado por: <a href="mailto:sebastianutrerabonet@gmail.com" style="color: #fff; font-size: larger">Sebastián Utrera Bonet.</a></p>
+</header>
+
+<div class="container-fluid" id="bloque"
+     style="background-color:transparent;   background-size: contain; padding: 20px; margin-top: 5px; margin-bottom: 90px; min-height: 382px; border: none">
+
+    <div class="col-lg-12 col-md-12" style="margin-top:20px">
+        <div class="col-lg-4 col-md-4 col-xs-12 col-xs-offset-0 pull-right" id="menu2" style="padding-bottom: 20px">
+            <div class="col-lg-12 col-md-12 col-xs-12 polaroid" style="background-color: white; padding:0 0 0px 0">
+                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">
+                    PRÓXIMOS EVENTOS</h4>
+
+                <div class="col-lg-12" style="padding:0px; font-size: smaller ">
+                    <ul class=" list-group">
+                        {% for carrera in proximos %}
+
+                            {% if carrera.fecha.date >= hoy.date and carrera.resultado == ''  %}
+
+                                    <li class="list-unstyled" style="vertical-align: middle;background-color: {% cycle 'white' '#eef' %}; padding: 5px 6px">
+                                        <a href="../carrera/{{ carrera.id }}">{{ carrera.fecha|date:'d/m/y' }}
+                                            - {{ carrera.titulo|upper }}
+                                            {% if carrera.ciudad != '' %}
+                                                ({{ carrera.ciudad|title }})
+                                            {% endif %}
+                                        </a>
+                                    </li>
+                                    {% if forloop.last != True %}
+                                        <hr style="padding: 0px; border: 1px solid #ddd; margin:{% cycle '5px 0 0 0' '0 0 5px 0' %}">
+                                    {% endif %}
+
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-lg-12 col-md-12 col-xs-12 polaroid"
+                 style="background-color: white; margin:  20px 0; padding: 0 0 0px 0">
+                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">ULTIMOS
+                    RESULTADOS</h4>
+
+                <div class="col-lg-12" style="padding:0px; font-size: smaller">
+                    <ul class=" list-group">
+                        {% for r in carreras %}
+                            {% if r.resultado != '' and r.fecha.date <= hoy.date %}
+
+                                    <li class="list-unstyled" style="vertical-align: middle;background-color: {% cycle 'white' '#eef' %}; padding: 5px 6px">
+                                        <a href="{{ r.resultado }}">{{ r.fecha|date:'d/m/y' }}- {{ r.titulo|upper }}
+                                            {% if r.ciudad != '' %}
+                                                ({{ r.ciudad|title }})
+                                            {% endif %}
+                                        </a>
+                                    </li>
+                                    {% if forloop.last != True %}
+                                        <hr style="padding: 0px; border: 1px solid #ddd;  margin:{% cycle '5px 0 0 0' '0 0 5px 0' %}">
+                                    {% endif %}
+
+
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-xs-12 polaroid"
+                 style="background-color: white; margin:0; padding: 0 0 0px 0">
+                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">ZONA
+                    SOCIOS</h4>
+
+                <div class="col-lg-12" style="padding-top:6px;">
+                    <ul class=" list-group">
+                        <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
+                            <a href="../inscripcion">INSCRIPCIÓN A EVENTO</a>
+                        </li>
+                        <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
+                            <a href="../listaparticipantes">LISTA DE PARTICIPANTES</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </footer>
+        <div class="col-lg-8 col-md-8 col-xs-12 pull-left">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+
+
+</div>
+<footer class="col-lg-12" style="height: auto; background-color: #ddd; padding: 20px;">
+    <div class="col-lg-3" style="padding-top: 10px;height: 140px; border-right: 0.05em solid #f0f0f0">
+
+        <p>Club de Atletismo Carmona Páez.</p>
+
+        <p><span class="glyphicon glyphicon-map-marker"></span> Plaza Emperador Carlos, s/n.<br> 11100 San Fernando
+            (Cádiz).</p>
+
+        <p><span class="glyphicon glyphicon-earphone"></span> 655826975</p>
+
+        <p><span class="glyphicon glyphicon-envelope"></span><a href="mailto:admin1@clubcarmonapaez.com"
+                                                                style="color: #2e2e2e"> admin1@clubcarmonapaez.com</a>
+        </p>
+    </div>
+    <div class="col-lg-3" style="border-right:0.05em solid #f0f0f0; padding-top: 10px; height: 140px;">
+        <p>La sede social del club tiene el siguiente horario habitual de apertura:<br><span
+                class="glyphicon glyphicon-time"></span> Viernes a las 21:00 horas. </p><br>
+
+        <p>Siguenos en facebook: <a href="https://www.facebook.com/groups/264525040262137/?fref=ts" target="_blank">
+            <img src="../static/img/face.png" ; width="45px" ; height="30px"/> </a></p>
+    </div>
+    <div class="col-lg-3" style="text-align: right; padding-top: 10px">
+
+    </div>
+
+    <div class="col-lg-3" style="text-align: right; padding-top: 10px">
+        <p>Sitio web desarrollado por: <a href="mailto:sebastianutrerabonet@gmail.com"
+                                          style="color: #fff; font-size: larger">Sebastián Utrera Bonet.</a></p>
+    </div>
+</footer>
 
 </body>
-
 

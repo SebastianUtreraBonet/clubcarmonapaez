@@ -4,133 +4,75 @@
     setTimeout(window.location('plantilla.html').load(), 2000)
 </script>
 {% block content %}
-    <div class="container-fluid">
 
-        <div class="col-lg-4 col-xs-12 col-xs-offset-0 pull-right" id="menu2" style="padding-bottom: 20px">
 
-            <div class="col-lg-12 col-xs-12 polaroid" style="background-color: white; padding:0 0 0px 0">
-                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">
-                    PRÓXIMOS
-                    EVENTOS</h4>
+    <div class="col-lg-12 col-md-12 col-xs-12 pull-left polaroid" style="margin-bottom: 20px; padding: 10px;">
 
-                <div class="col-lg-12" style="padding-top:6px ">
-                    <ul class=" list-group">
-                        {% for carrera in carreras %}
 
-                            {% if carrera.fecha.date >= hoy.date %}
+        {% for carrera in car %}
 
-                                <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                                    <a href="carrera/{{ carrera.id }}">{{ carrera|upper }}</a>
-                                </li>
 
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
-
-            </div>
-            <div class="col-lg-12 col-xs-12 polaroid"
-                 style="background-color: white; margin:  20px 0; padding: 0 0 0px 0">
-                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px;">ULTIMOS
-                    RESULTADOS</h4>
-
-                <div class="col-lg-12" style="padding-top:6px;">
-                    <ul class=" list-group">
-                        {% for r in carreras %}
-                            {% if r.resultado != '' and r.fecha.date <= hoy.date %}
-                                <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                                    <a href="{{ r.resultado }}">{{ r.fecha.day }}/{{ r.fecha.month }}/{{ r.fecha.year }}
-                                        - {{ r.titulo|upper }}</a>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-12 col-xs-12 polaroid"
-                 style="background-color: white; margin:0; padding: 0 0 0px 0">
-                <h4 style="text-align: center; background-color: #c7ddef; margin:0; padding: 10px; cursor: default">ZONA
-                    SOCIOS</h4>
-
-                <div class="col-lg-12" style="padding-top:6px;">
-                    <ul class=" list-group">
-                        <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                            <a href="inscripcion">INSCRIPCIÓN A EVENTO</a>
-                        </li>
-                        <li class="list-unstyled" style="vertical-align: middle; padding: 4px 0 0">
-                            <a href="listaparticipantes">LISTA DE PARTICIPANTES</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-lg-8 col-xs-12 pull-left"
-             style="background-color: rgba(255, 255, 255, 0.90); margin-bottom: 20px; padding-bottom: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);">
-
-            <div style="border: 1px solid white;">
-                <div>
-                    <h2 style="text-align: center;padding-bottom: 10px; cursor:default">EVENTOS EN LOS PRÓXIMOS 20
-                        DÍAS</h2>
-                    {% for carrera in carreras %}
-
-                        {% if forloop.counter <= 12 %}
-                        {% if carrera.fecha.date >= hoy.date and carrera.fecha.date <= dias.date %}
-                            <a href="carrera/{{ carrera.id }}" style="text-decoration: none">
-                            <div class="col-lg-2 col-md-2 col-xs-12" style="padding:6px">
-                                <div style="color: rgba(50, 50, 50, 0.96); text-align: center; font-size: 0.9em; padding:0; margin: 0; background-color:rgba(220,250,220,0.3);  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 15px 0 rgba(0, 0, 0, 0.4);">
-                                    <div class="img-responsive"
-                                         style="background-image: url({{ carrera.foto }});background-repeat: no-repeat; background-size: cover; background-position: center; height: 18em; ;  margin: 0"></div>
-                                    <div style="padding: 15px 0; height: 6em">
-                                        {{ carrera }}
-                                    </div>
+                <a href="carrera/{{ carrera.id }}" style="text-decoration: none;">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12"
+                         style="text-align: center;padding:0 5px; margin: 5px auto;">
+                        <div class="polaroid">
+                            <div class="img-responsive"
+                                 style="background-image: url({{ carrera.foto }});background-repeat: no-repeat; background-size: cover; background-position: top; height: 25em;">
+                                <div class="cara" style="padding:16px 0px; height: 100%;font-size: 180% ">
+                                {{ carrera.fecha|date:'D, j M Y' }}<br><br>
+                                {{ carrera.titulo }}<br><br>
+                                {% if carrera.ciudad != '' %}
+                                    ({{ carrera.ciudad|title }})
+                                    {% endif %}
                                 </div>
                             </div>
 
-                            </a>
-                        {% endif %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
+                        </div>
+                    </div>
+                </a>
 
-        </div>
-        <div class="col-lg-8 col-xs-12 pull-left"
-             style="background-color: rgba(255, 255, 255, 0.90); margin-bottom: 80px; padding-bottom: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);">
-            <div>
-                <h2 style="text-align: center;padding-bottom: 10px; cursor: default">TODAS LAS CARRERAS</h2>
-                {% for i in mes.items %}
-                    {% if i|first >= hoy.month %}
-                        <div class="col-lg-12">
-                            <h3 style="text-align: left; cursor: default">{{ i|last }}</h3>
 
-                            <table class="list table">
-                                {% for carrera in carreras %}
-                                    {% if carrera.fecha.month == i|first and carrera.fecha.date >= hoy.date %}
-                                        <tr class="table">
-                                          <td  style="color: rgba(50, 50, 50, 0.96); font-size: 1.3em;" class="col-lg-12">
-                                            <a class="col-lg-9" href="carrera/{{ carrera.id }}"
-                                               style="text-decoration: none; text-align: justify">{{ carrera|upper }}</a>
-                                            <spam class="col-lg-3"
+        {% endfor %}
+    </div>
+
+
+
+    <div class="col-lg-12 col-xs-12 pull-left"
+         style="background-color: rgba(255, 255, 255, 0.90); margin-bottom: 80px; padding-bottom: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);">
+        <div>
+            <h2 style="text-align: center;padding-bottom: 10px; cursor: default">TODAS LAS CARRERAS</h2>
+            {% for i in mes.items %}
+                {% if i|first >= hoy.month %}
+                    <div class="col-lg-12">
+                        <h3 style="text-align: left; cursor: default">{{ i|last }}</h3>
+
+                        <table class="list table">
+                            {% for carrera in carreras %}
+                                {% if carrera.fecha.month == i|first and carrera.fecha.date >= hoy.date %}
+                                    <tr class="table" style="background-color:{% cycle 'white' '#eef' %}">
+                                        <td style="color: rgba(50, 50, 50, 0.96); font-size: 1.3em;" class="col-lg-12">
+                                              <a href="{{ carrera.resultado }}">{{ carrera.fecha|date:'d/m/y' }}- {{ carrera.titulo|upper }}
+                                            {% if carrera.ciudad != '' %}
+                                                ({{ carrera.ciudad|title }})
+                                            {% endif %}</a>
+                                            <spam class="col-lg-3 pull-right"
                                                   style="opacity: 0.7; font-size: 0.7em; text-align: right;">{{ carrera.fecha|timeuntil }}</spam>
 
                                         </td>
 
-                                        </tr>
+                                    </tr>
 
 
-                                    {% endif %}
+                                {% endif %}
 
-                                {% endfor %}
-                            </table>
-                        </div>
+                            {% endfor %}
+                        </table>
+                    </div>
 
-                    {% endif %}
+                {% endif %}
 
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
-
-
     </div>
+
 {% endblock %}
