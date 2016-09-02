@@ -68,10 +68,15 @@ class Participante(models.Model):
 	carrera = models.ForeignKey(Carrera)
 	lista = RichTextField(max_length=99999999,blank=True, null=True)
 	fecha = models.DateTimeField(default=timezone.datetime.today())
-
 	def __str__(self):
 		return str(self.fecha.strftime("%d/%m/%y"))+"  -  "+str(self.carrera.titulo)
 
+class Liga(models.Model):
+	lista = RichTextField(max_length=99999999,blank=True, null=True)
+	fecha = models.DateTimeField(default=timezone.datetime.today())
+
+	def __str__(self):
+		return str(self.fecha.strftime("%d/%m/%y"))+"  -  "+str('LIGA')
 
 
 

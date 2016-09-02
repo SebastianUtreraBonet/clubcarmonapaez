@@ -81,7 +81,21 @@ header {
 	right: 0px;
 }
 
+#bloque{
+	padding: 0;
+	margin: 0;
+}
+#bloquep{
+	padding: 0;
+	margin: 0;
+}
+
 @media screen and (max-width:800px ) {
+	*{
+		margin: 0;
+		padding: 0;
+	}
+
 	header nav {
 		width:100%;
 		left:-100%;
@@ -101,9 +115,21 @@ header {
 	#menu2{
         z-index: 9999;
 		position: static;
+		top: 0;
+		right: 0;
+		margin-top:-4.5em;
 
 	}
 
+	#bloque > div{
+		padding: 0em;
+		margin: 0em;
+	}
+
+	#bloquep > div{
+	padding: 0;
+	margin: 0;
+	}
 
 	#cabecera{
 		min-height: 0;

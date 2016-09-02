@@ -165,6 +165,21 @@ def participantes(request):
                                                         'carrera':carrera,})
 
 
+def liga(request):
+    hoy = timezone.datetime.today()
+    carreras = Carrera.objects.all().order_by('fecha')[0:10:]
+    proximos = Carrera.objects.filter(fecha__gte=datetime.today())[:7]
+    carrera = Carrera.objects.all().order_by('fecha')
+    liga = Liga.objects.all()
+    actualizado = max(Participante.objects.filter(fecha__lte=timezone.datetime.today()))
+    return render(request, 'Club/liga.html', {'liga':liga,
+                                                       'actualizado':actualizado,
+                                                       'hoy'     : hoy,
+                                                       'proximos': proximos,
+                                                        'carreras':carreras,
+                                                        'carrera':carrera,})
+
+
 
 
 

@@ -1,32 +1,24 @@
 {% extends "Club/plantilla.html" %}
 {% block content %}
 
-    <div class="col-lg-12 polaroid">
+    <div class="col-lg-12 polaroid col-xs-12" style="padding:0; margin:0">
 
         {% for post in posts %}
 
-            {% if post.foto.name != 'nofoto.jpg' %}
-                <div class="col-lg-4"><a href="../{{ post.foto }}">
-                    <div style="background-image: url(../{{ post.foto }});background-repeat: no-repeat; background-size: cover; background-position: center; height: 21em; width: auto; min-width: 15.5em; margin: 70px auto;"></div>
-                </a>
+
+                <div class="col-lg-4 col-xs-12 img-responsive" style="padding:20px; margin:0">
+                    <a href="../{{ post.foto }}">
+                    <div style="background-image: url(../{{ post.foto }});background-repeat: no-repeat; background-size: cover; background-position: center; height: 27em;max-height:35em; width: auto; min-width: 14.5em; margin: 0; padding: 0;"></div>
+                    </a>
                 </div>
                 {% autoescape off %}
                     <h1 style="text-align: center">{{ post.titulo }}</h1>
-                    <div class="col-lg-8" style="z-index: 10;">{{ post.texto }} </div>
+                    <div class="col-lg-8" style="z-index: 10;padding: 20px; margin: 0;">{{ post.texto }} </div>
                 {% endautoescape %}
 
                 <div class="row"></div>
-                <p style="text-align: right; color: #3c3c3c; opacity: 0.8; margin-right: 20px">{{ post.fecha_publicacion }}</p>
-            {% else %}
+                <p style="text-align: right; color: #3c3c3c; opacity: 0.8; margin-right: 20px; font-size: small">{{ post.fecha_publicacion }}</p>
 
-                {% autoescape off %}
-                    <h1 style="text-align: center">{{ post.titulo }}</h1>
-                    <div class="col-lg-12" style="z-index: 10;">{{ post.texto }} </div>
-                {% endautoescape %}
-
-                <div class="row"></div>
-                <p style="text-align: right; color: #3c3c3c; opacity: 0.8; margin-right: 20px">{{ post.fecha_publicacion }}</p>
-            {% endif %}
 
         {% endfor %}
     </div>

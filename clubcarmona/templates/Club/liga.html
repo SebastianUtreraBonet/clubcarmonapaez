@@ -1,0 +1,26 @@
+{% extends 'Club/plantilla.html' %}
+{% block content %}
+
+
+
+
+    <div class="polaroid col-lg-12 col-xs-12 pull-left" style="margin-bottom:20px; padding: 40px; font-size: 1.3em">
+        <h3 style="text-align: center">CLASIFICACIÓN DE LA LIGA "MANUEL JESÚS LÓPEZ LEÓN"</h3>
+        <h5 style="text-align: center">Actualizado el {{ actualizado|truncatewords:1 }} </h5>
+        {% for p in liga %}
+
+            <div style="text-align: justify; margin: 40px 20px;">
+                {% autoescape off %}
+                    <div style="text-align: justify;">{{ p.lista }}</div>
+                {% endautoescape %}
+            </div>
+            <hr>
+        {% endfor %}
+
+            <button class="btn-info btn col-lg-6 col-lg-offset-3  col-xs-12" style="text-align: center; vertical-align: middle; font-size: medium; margin-top: 50px;">
+                NORMATIVA DE LA LIGA INTERNA</button>
+
+    </div>
+
+
+{% endblock %}

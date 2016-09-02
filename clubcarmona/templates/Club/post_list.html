@@ -8,20 +8,18 @@
 {% block content %}
     {% for post in posts %}
         <div class="col-lg-12 col-md-12 col-xs-12 col-lg-push-0 polaroid"
-             style=" padding: 0; margin: 0px 0 20px 0; background-color: white;">
-
-            {% if post.foto != 'nofoto.jpg' %}
+             style=" padding: 0; margin: 0 0 20px 0; background-color: white; ">
             <div class="col-lg-3 col-md-3 img-responsive"
-                 style="margin: 0px; padding: 0; background-color: rgba(240,240,240,0.3)">
-                <div style="background-image: url({{ post.foto }});background-repeat: no-repeat; background-size: cover; background-position: top; max-height: 21em; min-height:19em;  width: auto; min-width: 10em;"></div>
+                 style="margin: 0px; padding: 0;">
+                <div style="background-image: url({{ post.foto }});background-repeat: no-repeat; background-size: cover; background-position: top; max-height: 50em; min-height:12.5em;  width: auto; min-width: 12em;"></div>
             </div>
             <div class="col-lg-9 col-md-7 col-lg-offset-0 col-md-offset-1"
-                 style="padding: 1.8em; text-align: justify;">
+                 style="padding:0 1.5em; text-align: justify;">
                 <a href="ficha/{{ post.id }}">
                     <h3 style="text-align: left;">{{ post.titulo|upper }}</h3>
                 </a>
                 {% autoescape off %}
-                    {{ post.texto|truncatewords:60|striptags }}
+                    {{ post.texto|truncatewords:45|striptags }}
                     {% if post.texto|length > 250 %}
                         <a href="ficha/{{ post.id }}" class="glyphicon glyphicon-triangle-right"></a>
                     {% endif %}
@@ -34,28 +32,6 @@
                 {% endif %}
 
             </div>
-            {% else %}
-                <div class="col-lg-12 col-md-12 col-lg-offset-0 "
-                     style="padding: 1.8em; text-align: justify;">
-                    <a href="ficha/{{ post.id }}">
-                        <h3 style="text-align: left;">{{ post.titulo|upper }}</h3>
-                    </a>
-                    {% autoescape off %}
-                        {{ post.texto|truncatewords:60|striptags }}
-                        {% if post.texto|length > 250 %}
-                            <a href="ficha/{{ post.id }}" class="glyphicon glyphicon-triangle-right"></a>
-                        {% endif %}
-                    {% endautoescape %}
-
-                    <hr style="margin: 5px; padding: 5px;">
-                    {% if post.fecha_publicacion != null %}
-                        <p style="text-align: right; font-size: 0.75em; color: rgba(119, 119, 119, 0.94);">
-                            {{ post.fecha_publicacion }}</p>
-                    {% endif %}
-                </div>
-            {% endif %}
-
-
         </div>
     {% endfor %}
 

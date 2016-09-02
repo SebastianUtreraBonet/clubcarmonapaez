@@ -16,5 +16,6 @@ urlpatterns = [
     url(r'^listaparticipantes', views.participantes, name='participantes'),
     url(r'^buscar', views.buscar, name='buscar'),
     url(r'^club', views.biografia, name='club'),
+    url(r'^liga', views.liga, name='liga'),
 
 ]
